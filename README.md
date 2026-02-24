@@ -5,7 +5,6 @@
 
   ### Unlock Your Career in Europe
 
-  [View Demo](https://ai.studio/apps/10ad4d25-5502-45a0-a3d1-284b014d7cb5)
 </div>
 
 OpenDoor is a premier recruitment platform designed to connect international talent with top European employers. We simplify the complexities of relocation by offering visa sponsorship support, housing assistance, and direct connections to hiring managers.
