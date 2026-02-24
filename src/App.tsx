@@ -6,7 +6,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-import { 
 import PageHeader from './components/PageHeader';
 import VisaGuide from './VisaGuide';
 import SuccessStories from './SuccessStories';
@@ -15,6 +14,7 @@ import TalentSolutions from './TalentSolutions';
 import Pricing from './Pricing';
 import Resources from './Resources';
 import BlogPost from './BlogPost';
+import {
   Search, 
   Briefcase, 
   MapPin, 
@@ -34,7 +34,7 @@ import BlogPost from './BlogPost';
   CheckCircle2,
   FileText,
   Map,
-  BookOpen, Info, Shield, FileCheck
+  BookOpen
 } from "lucide-react";
 
 const Navbar = () => {
@@ -207,12 +207,12 @@ const JobCards = () => (
           Curated roles for international talent. We handle the connections; you handle the adventure. Explore top-tier positions across Europe with visa sponsorship.
         </p>
       </div>
+      <Link className="text-sm font-bold border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity" to="/jobs">VIEW ALL JOBS</Link>
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {[
-        { title: "Senior Software Engineer", location: "Amsterdam, NL", salary: "€85k - €110k", badge: "NEW", badgeColor: "bg-accent-lime", tag: "Visa Sponsored", tagIcon: PlaneTakeoff, img: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=800" },
-        { title: "Product Designer (UX/UI)", location: "Paris, FR", salary: "€65k - €80k", badge: "POPULAR", badgeColor: "bg-accent-gold", tag: "Visa Sponsored", tagIcon: PlaneTakeoff, img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800" },
-        { title: "Data Scientist Lead", location: "Berlin, DE", salary: "€90k - €120k", badge: null, badgeColor: "", tag: "Relocation Pkg", tagIcon: HomeIcon, img: "https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80&w=800" },
+        { title: "Senior React Engineer", location: "Berlin, DE", salary: "€75k - €95k", badge: "VISA SPONSORSHIP", badgeColor: "bg-accent-gold", tag: "Engineering", tagIcon: Briefcase, img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800" },
+        { title: "Product Designer", location: "Amsterdam, NL", salary: "€65k - €85k", badge: "RELOCATION", badgeColor: "bg-accent-coral text-white", tag: "Design", tagIcon: MapPin, img: "https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80&w=800" },
         { title: "Full Stack Developer", location: "Barcelona, ES", salary: "€55k - €70k", badge: "4.9 RATING", badgeColor: "bg-accent-lime", tag: "Hybrid", tagIcon: HomeIcon, img: "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=800" }
       ].map((job, i) => (
         <div key={i} className="group cursor-pointer">
@@ -315,7 +315,7 @@ const Insights = () => (
               </span>
             ))}
           </div>
-          <Link className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity" to={`/blog/post-${i}`}>READ STORY</Link>
+          <Link to={`/blog/post-${i}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
         </div>
       </motion.div>
     ))}
@@ -505,20 +505,17 @@ const Newsletter = () => (
 );
 
 const FAQ = () => (
-  <section className="py-24 px-6 max-w-3xl mx-auto mb-24">
-    <h2 className="font-display text-5xl text-center mb-16">Common Questions</h2>
-    <div className="space-y-8">
+  <section className="max-w-4xl mx-auto px-6 mb-24">
+    <h2 className="font-display text-4xl mb-12 text-center">Common questions</h2>
+    <div className="space-y-4">
       {[
-        { q: "How much does OpenDoor cost for candidates?", a: "OpenDoor is 100% free for candidates. We are funded by our partner employers who are looking for top international talent." },
-        { q: "Do I need a job offer before applying for a visa?", a: "In most cases, yes. However, some countries like Germany offer 'Job Seeker' visas. We primarily focus on matching you with employers who provide full visa sponsorship." },
-        { q: "How long does the relocation process typically take?", a: "On average, from first interview to your first day in Europe, it takes 3-5 months depending on the country and visa type." }
+        { q: "Do I need a visa before applying?", a: "Not necessarily. Many of our partner companies offer visa sponsorship. We'll guide you through the requirements for each role." },
+        { q: "Is OpenDoor free for candidates?", a: "Yes! Our services are completely free for job seekers. We are paid by the companies that hire you." },
+        { q: "Which countries do you cover?", a: "We currently focus on major tech hubs in Germany, Netherlands, Sweden, Spain, and France, but we're expanding rapidly." }
       ].map((item, i) => (
-        <div key={i} className="border-b border-gray-100 pb-8">
-          <h3 className="font-bold text-xl mb-4 flex justify-between items-center cursor-pointer group">
-            {item.q}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </h3>
-          <p className="text-gray-500 leading-relaxed">{item.a}</p>
+        <div key={i} className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-gray-100">
+          <h3 className="font-bold text-lg mb-2">{item.q}</h3>
+          <p className="text-gray-600">{item.a}</p>
         </div>
       ))}
     </div>
@@ -538,7 +535,6 @@ const Home = () => (
     <FAQ />
   </>
 );
-
 
 const FindJobs = () => (
   <div className="min-h-screen bg-gray-50">
@@ -577,26 +573,43 @@ const FindJobs = () => (
                   ))}
                 </div>
               </div>
+              <div>
+                <h4 className="font-semibold text-sm mb-3">Visa Support</h4>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" className="rounded text-primary focus:ring-primary" defaultChecked />
+                  <span className="text-sm text-gray-600">Visa Sponsorship</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer mt-2">
+                  <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                  <span className="text-sm text-gray-600">Relocation Package</span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
+
         <div className="flex-1">
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-8 flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input type="text" placeholder="Search jobs..." className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-primary outline-none" />
+          <div className="mb-8">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search by job title, company, or keywords..."
+                className="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
+              />
             </div>
-            <button className="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-colors">
-              Search
-            </button>
           </div>
+
           <div className="space-y-4">
             {[
-              { title: "Senior Frontend Engineer", company: "TechCorp Inc.", location: "Berlin, Germany", salary: "€75k - €95k", tags: ["Visa Sponsored", "Hybrid", "React"] },
-              { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, NL", salary: "€65k - €85k", tags: ["Relocation Pkg", "On-site", "Figma"] },
-              { title: "Data Scientist", company: "FinTech Solutions", location: "London, UK", salary: "£80k - £110k", tags: ["Visa Sponsored", "Remote", "Python"] },
-              { title: "Backend Developer", company: "E-commerce Giant", location: "Paris, France", salary: "€70k - €90k", tags: ["Visa Sponsored", "Hybrid", "Node.js"] },
-              { title: "DevOps Engineer", company: "Cloud Systems", location: "Stockholm, Sweden", salary: "€80k - €100k", tags: ["Relocation Pkg", "On-site", "AWS"] }
+              { title: "Senior React Engineer", company: "TechCorp GmbH", location: "Berlin, Germany", salary: "€75k - €95k", tags: ["Visa Sponsorship", "Hybrid", "React"] },
+              { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, Netherlands", salary: "€65k - €85k", tags: ["Relocation", "On-site", "Figma"] },
+              { title: "Backend Developer (Go)", company: "FinTech AB", location: "Stockholm, Sweden", salary: "€70k - €90k", tags: ["Visa Sponsorship", "Remote", "Go"] },
+              { title: "Data Scientist", company: "AI Solutions", location: "Paris, France", salary: "€60k - €80k", tags: ["Visa Sponsorship", "Python", "ML"] },
+              { title: "DevOps Engineer", company: "Cloud Systems", location: "Barcelona, Spain", salary: "€55k - €75k", tags: ["Relocation", "AWS", "K8s"] },
+              { title: "Frontend Lead", company: "E-commerce Inc", location: "Berlin, Germany", salary: "€85k - €110k", tags: ["Visa Sponsorship", "Vue.js", "Lead"] },
+              { title: "UX Researcher", company: "UserFirst", location: "Amsterdam, Netherlands", salary: "€55k - €75k", tags: ["Relocation", "Research"] },
+              { title: "Cloud Architect", company: "Enterprise IT", location: "Stockholm, Sweden", salary: "€80k - €100k", tags: ["Relocation Pkg", "On-site", "AWS"] }
             ].map((job, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center">
                 <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -774,27 +787,6 @@ const AboutUs = () => (
     </section>
   </div>
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-screen bg-white">
