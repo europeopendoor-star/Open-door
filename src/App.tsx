@@ -6,7 +6,15 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-import { 
+import PageHeader from './components/PageHeader';
+import VisaGuide from './VisaGuide';
+import SuccessStories from './SuccessStories';
+import PostJob from './PostJob';
+import TalentSolutions from './TalentSolutions';
+import Pricing from './Pricing';
+import Resources from './Resources';
+import BlogPost from './BlogPost';
+import {
   Search, 
   Briefcase, 
   MapPin, 
@@ -199,12 +207,12 @@ const JobCards = () => (
           Curated roles for international talent. We handle the connections; you handle the adventure. Explore top-tier positions across Europe with visa sponsorship.
         </p>
       </div>
+      <Link className="text-sm font-bold border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity" to="/jobs">VIEW ALL JOBS</Link>
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {[
-        { title: "Senior Software Engineer", location: "Amsterdam, NL", salary: "€85k - €110k", badge: "NEW", badgeColor: "bg-accent-lime", tag: "Visa Sponsored", tagIcon: PlaneTakeoff, img: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=800" },
-        { title: "Product Designer (UX/UI)", location: "Paris, FR", salary: "€65k - €80k", badge: "POPULAR", badgeColor: "bg-accent-gold", tag: "Visa Sponsored", tagIcon: PlaneTakeoff, img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800" },
-        { title: "Data Scientist Lead", location: "Berlin, DE", salary: "€90k - €120k", badge: null, badgeColor: "", tag: "Relocation Pkg", tagIcon: HomeIcon, img: "https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80&w=800" },
+        { title: "Senior React Engineer", location: "Berlin, DE", salary: "€75k - €95k", badge: "VISA SPONSORSHIP", badgeColor: "bg-accent-gold", tag: "Engineering", tagIcon: Briefcase, img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800" },
+        { title: "Product Designer", location: "Amsterdam, NL", salary: "€65k - €85k", badge: "RELOCATION", badgeColor: "bg-accent-coral text-white", tag: "Design", tagIcon: MapPin, img: "https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80&w=800" },
         { title: "Full Stack Developer", location: "Barcelona, ES", salary: "€55k - €70k", badge: "4.9 RATING", badgeColor: "bg-accent-lime", tag: "Hybrid", tagIcon: HomeIcon, img: "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=800" }
       ].map((job, i) => (
         <div key={i} className="group cursor-pointer">
@@ -307,7 +315,7 @@ const Insights = () => (
               </span>
             ))}
           </div>
-          <a className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity" href="#">READ STORY</a>
+          <Link to={`/blog/post-${i}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
         </div>
       </motion.div>
     ))}
@@ -329,7 +337,6 @@ const Footer = () => (
           <ul className="space-y-4 text-sm text-gray-400">
             <li><Link className="hover:text-white transition-colors" to="/jobs">Browse Jobs</Link></li>
             <li><Link className="hover:text-white transition-colors" to="/visa-guide">Visa Guide</Link></li>
-            <li><Link className="hover:text-white transition-colors" to="/cv-builder">CV Builder</Link></li>
             <li><Link className="hover:text-white transition-colors" to="/success-stories">Success Stories</Link></li>
           </ul>
         </div>
@@ -498,20 +505,17 @@ const Newsletter = () => (
 );
 
 const FAQ = () => (
-  <section className="py-24 px-6 max-w-3xl mx-auto mb-24">
-    <h2 className="font-display text-5xl text-center mb-16">Common Questions</h2>
-    <div className="space-y-8">
+  <section className="max-w-4xl mx-auto px-6 mb-24">
+    <h2 className="font-display text-4xl mb-12 text-center">Common questions</h2>
+    <div className="space-y-4">
       {[
-        { q: "How much does OpenDoor cost for candidates?", a: "OpenDoor is 100% free for candidates. We are funded by our partner employers who are looking for top international talent." },
-        { q: "Do I need a job offer before applying for a visa?", a: "In most cases, yes. However, some countries like Germany offer 'Job Seeker' visas. We primarily focus on matching you with employers who provide full visa sponsorship." },
-        { q: "How long does the relocation process typically take?", a: "On average, from first interview to your first day in Europe, it takes 3-5 months depending on the country and visa type." }
+        { q: "Do I need a visa before applying?", a: "Not necessarily. Many of our partner companies offer visa sponsorship. We'll guide you through the requirements for each role." },
+        { q: "Is OpenDoor free for candidates?", a: "Yes! Our services are completely free for job seekers. We are paid by the companies that hire you." },
+        { q: "Which countries do you cover?", a: "We currently focus on major tech hubs in Germany, Netherlands, Sweden, Spain, and France, but we're expanding rapidly." }
       ].map((item, i) => (
-        <div key={i} className="border-b border-gray-100 pb-8">
-          <h3 className="font-bold text-xl mb-4 flex justify-between items-center cursor-pointer group">
-            {item.q}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </h3>
-          <p className="text-gray-500 leading-relaxed">{item.a}</p>
+        <div key={i} className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-gray-100">
+          <h3 className="font-bold text-lg mb-2">{item.q}</h3>
+          <p className="text-gray-600">{item.a}</p>
         </div>
       ))}
     </div>
@@ -530,37 +534,6 @@ const Home = () => (
     <Newsletter />
     <FAQ />
   </>
-);
-
-const PageHeader = ({ title, subtitle, bgImage }: { title: string, subtitle: string, bgImage: string }) => (
-  <header className="relative h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
-    <div className="absolute inset-0 z-0">
-      <img 
-        alt={title} 
-        className="w-full h-full object-cover" 
-        src={bgImage}
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
-    </div>
-    <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
-      <motion.h1 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="font-display text-4xl sm:text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-lg"
-      >
-        {title}
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="text-white/90 text-sm md:text-base tracking-widest uppercase font-medium"
-      >
-        {subtitle}
-      </motion.p>
-    </div>
-  </header>
 );
 
 const FindJobs = () => (
@@ -600,26 +573,43 @@ const FindJobs = () => (
                   ))}
                 </div>
               </div>
+              <div>
+                <h4 className="font-semibold text-sm mb-3">Visa Support</h4>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" className="rounded text-primary focus:ring-primary" defaultChecked />
+                  <span className="text-sm text-gray-600">Visa Sponsorship</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer mt-2">
+                  <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                  <span className="text-sm text-gray-600">Relocation Package</span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
+
         <div className="flex-1">
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-8 flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input type="text" placeholder="Search jobs..." className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-primary outline-none" />
+          <div className="mb-8">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search by job title, company, or keywords..."
+                className="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
+              />
             </div>
-            <button className="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-colors">
-              Search
-            </button>
           </div>
+
           <div className="space-y-4">
             {[
-              { title: "Senior Frontend Engineer", company: "TechCorp Inc.", location: "Berlin, Germany", salary: "€75k - €95k", tags: ["Visa Sponsored", "Hybrid", "React"] },
-              { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, NL", salary: "€65k - €85k", tags: ["Relocation Pkg", "On-site", "Figma"] },
-              { title: "Data Scientist", company: "FinTech Solutions", location: "London, UK", salary: "£80k - £110k", tags: ["Visa Sponsored", "Remote", "Python"] },
-              { title: "Backend Developer", company: "E-commerce Giant", location: "Paris, France", salary: "€70k - €90k", tags: ["Visa Sponsored", "Hybrid", "Node.js"] },
-              { title: "DevOps Engineer", company: "Cloud Systems", location: "Stockholm, Sweden", salary: "€80k - €100k", tags: ["Relocation Pkg", "On-site", "AWS"] }
+              { title: "Senior React Engineer", company: "TechCorp GmbH", location: "Berlin, Germany", salary: "€75k - €95k", tags: ["Visa Sponsorship", "Hybrid", "React"] },
+              { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, Netherlands", salary: "€65k - €85k", tags: ["Relocation", "On-site", "Figma"] },
+              { title: "Backend Developer (Go)", company: "FinTech AB", location: "Stockholm, Sweden", salary: "€70k - €90k", tags: ["Visa Sponsorship", "Remote", "Go"] },
+              { title: "Data Scientist", company: "AI Solutions", location: "Paris, France", salary: "€60k - €80k", tags: ["Visa Sponsorship", "Python", "ML"] },
+              { title: "DevOps Engineer", company: "Cloud Systems", location: "Barcelona, Spain", salary: "€55k - €75k", tags: ["Relocation", "AWS", "K8s"] },
+              { title: "Frontend Lead", company: "E-commerce Inc", location: "Berlin, Germany", salary: "€85k - €110k", tags: ["Visa Sponsorship", "Vue.js", "Lead"] },
+              { title: "UX Researcher", company: "UserFirst", location: "Amsterdam, Netherlands", salary: "€55k - €75k", tags: ["Relocation", "Research"] },
+              { title: "Cloud Architect", company: "Enterprise IT", location: "Stockholm, Sweden", salary: "€80k - €100k", tags: ["Relocation Pkg", "On-site", "AWS"] }
             ].map((job, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center">
                 <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -730,19 +720,19 @@ const Relocation = () => (
           <Map className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">City Guides</h3>
           <p className="text-gray-600 mb-6">Comprehensive guides to neighborhoods, cost of living, and local amenities.</p>
-          <a href="#" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</a>
+          <Link to="/resources" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</Link>
         </div>
         <div className="bg-gray-50 p-8 rounded-3xl">
           <FileText className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">Visa Requirements</h3>
           <p className="text-gray-600 mb-6">Detailed breakdowns of visa types and requirements for different EU countries.</p>
-          <a href="#" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Learn More</a>
+          <Link to="/visa-guide" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Learn More</Link>
         </div>
         <div className="bg-gray-50 p-8 rounded-3xl">
           <BookOpen className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">Expat Community</h3>
           <p className="text-gray-600 mb-6">Connect with other professionals who have made the move through OpenDoor.</p>
-          <a href="#" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Join Network</a>
+          <Link to="/success-stories" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Join Network</Link>
         </div>
       </div>
     </section>
@@ -833,13 +823,13 @@ export default function App() {
         <Route path="/employers" element={<Employers />} />
         <Route path="/relocation" element={<Relocation />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/visa-guide" element={<PlaceholderPage title="Visa Guide" />} />
-        <Route path="/cv-builder" element={<PlaceholderPage title="CV Builder" />} />
-        <Route path="/success-stories" element={<PlaceholderPage title="Success Stories" />} />
-        <Route path="/post-job" element={<PlaceholderPage title="Post a Job" />} />
-        <Route path="/talent-solutions" element={<PlaceholderPage title="Talent Solutions" />} />
-        <Route path="/pricing" element={<PlaceholderPage title="Pricing" />} />
-        <Route path="/resources" element={<PlaceholderPage title="Resources" />} />
+        <Route path="/visa-guide" element={<VisaGuide />} />
+        <Route path="/success-stories" element={<SuccessStories />} />
+        <Route path="/post-job" element={<PostJob />} />
+        <Route path="/talent-solutions" element={<TalentSolutions />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
       <Footer />
     </div>
