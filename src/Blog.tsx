@@ -2,10 +2,10 @@ import PageHeader from './components/PageHeader';
 import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
 
-const Resources = () => (
+const Blog = () => (
   <div className="min-h-screen bg-white">
     <PageHeader
-      title="Resources & Insights"
+      title="Blog & Insights"
       subtitle="Guides, articles, and tools for your international career"
       bgImage="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=2000"
     />
@@ -91,4 +91,4 @@ const Resources = () => (
   </div>
 );
 
-export default Resources;
+export default Blog;
