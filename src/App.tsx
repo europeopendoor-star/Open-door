@@ -7,6 +7,14 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { 
+import PageHeader from './components/PageHeader';
+import VisaGuide from './VisaGuide';
+import SuccessStories from './SuccessStories';
+import PostJob from './PostJob';
+import TalentSolutions from './TalentSolutions';
+import Pricing from './Pricing';
+import Resources from './Resources';
+import BlogPost from './BlogPost';
   Search, 
   Briefcase, 
   MapPin, 
@@ -26,7 +34,7 @@ import {
   CheckCircle2,
   FileText,
   Map,
-  BookOpen
+  BookOpen, Info, Shield, FileCheck
 } from "lucide-react";
 
 const Navbar = () => {
@@ -307,7 +315,7 @@ const Insights = () => (
               </span>
             ))}
           </div>
-          <a className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity" href="#">READ STORY</a>
+          <Link className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity" to={`/blog/post-${i}`}>READ STORY</Link>
         </div>
       </motion.div>
     ))}
@@ -329,7 +337,6 @@ const Footer = () => (
           <ul className="space-y-4 text-sm text-gray-400">
             <li><Link className="hover:text-white transition-colors" to="/jobs">Browse Jobs</Link></li>
             <li><Link className="hover:text-white transition-colors" to="/visa-guide">Visa Guide</Link></li>
-            <li><Link className="hover:text-white transition-colors" to="/cv-builder">CV Builder</Link></li>
             <li><Link className="hover:text-white transition-colors" to="/success-stories">Success Stories</Link></li>
           </ul>
         </div>
@@ -532,36 +539,6 @@ const Home = () => (
   </>
 );
 
-const PageHeader = ({ title, subtitle, bgImage }: { title: string, subtitle: string, bgImage: string }) => (
-  <header className="relative h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
-    <div className="absolute inset-0 z-0">
-      <img 
-        alt={title} 
-        className="w-full h-full object-cover" 
-        src={bgImage}
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
-    </div>
-    <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
-      <motion.h1 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="font-display text-4xl sm:text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-lg"
-      >
-        {title}
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="text-white/90 text-sm md:text-base tracking-widest uppercase font-medium"
-      >
-        {subtitle}
-      </motion.p>
-    </div>
-  </header>
-);
 
 const FindJobs = () => (
   <div className="min-h-screen bg-gray-50">
@@ -730,19 +707,19 @@ const Relocation = () => (
           <Map className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">City Guides</h3>
           <p className="text-gray-600 mb-6">Comprehensive guides to neighborhoods, cost of living, and local amenities.</p>
-          <a href="#" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</a>
+          <Link to="/resources" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</Link>
         </div>
         <div className="bg-gray-50 p-8 rounded-3xl">
           <FileText className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">Visa Requirements</h3>
           <p className="text-gray-600 mb-6">Detailed breakdowns of visa types and requirements for different EU countries.</p>
-          <a href="#" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Learn More</a>
+          <Link to="/visa-guide" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Learn More</Link>
         </div>
         <div className="bg-gray-50 p-8 rounded-3xl">
           <BookOpen className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">Expat Community</h3>
           <p className="text-gray-600 mb-6">Connect with other professionals who have made the move through OpenDoor.</p>
-          <a href="#" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Join Network</a>
+          <Link to="/success-stories" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Join Network</Link>
         </div>
       </div>
     </section>
@@ -798,6 +775,27 @@ const AboutUs = () => (
   </div>
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-screen bg-white">
     <PageHeader 
@@ -833,13 +831,13 @@ export default function App() {
         <Route path="/employers" element={<Employers />} />
         <Route path="/relocation" element={<Relocation />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/visa-guide" element={<PlaceholderPage title="Visa Guide" />} />
-        <Route path="/cv-builder" element={<PlaceholderPage title="CV Builder" />} />
-        <Route path="/success-stories" element={<PlaceholderPage title="Success Stories" />} />
-        <Route path="/post-job" element={<PlaceholderPage title="Post a Job" />} />
-        <Route path="/talent-solutions" element={<PlaceholderPage title="Talent Solutions" />} />
-        <Route path="/pricing" element={<PlaceholderPage title="Pricing" />} />
-        <Route path="/resources" element={<PlaceholderPage title="Resources" />} />
+        <Route path="/visa-guide" element={<VisaGuide />} />
+        <Route path="/success-stories" element={<SuccessStories />} />
+        <Route path="/post-job" element={<PostJob />} />
+        <Route path="/talent-solutions" element={<TalentSolutions />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
       <Footer />
     </div>
