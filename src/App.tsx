@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import PageHeader from './components/PageHeader';
 import VisaGuide from './VisaGuide';
@@ -12,7 +12,7 @@ import SuccessStories from './SuccessStories';
 import PostJob from './PostJob';
 import TalentSolutions from './TalentSolutions';
 import Pricing from './Pricing';
-import Resources from './Resources';
+import Blog from './Blog';
 import BlogPost from './BlogPost';
 import {
   Search, 
@@ -27,6 +27,7 @@ import {
   Mail,
   Phone,
   Menu,
+  ChevronDown,
   X,
   Filter,
   Building,
@@ -37,18 +38,77 @@ import {
   BookOpen
 } from "lucide-react";
 
+const NavDropdown = ({ title, items }: { title: string, items: { label: string, href: string }[] }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className="relative group h-full flex items-center"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <button className="flex items-center gap-1 hover:text-white text-white/90 transition-colors py-2 font-medium">
+        {title}
+        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 bg-white text-gray-800 rounded-xl shadow-xl py-3 min-w-[220px] border border-gray-100 overflow-hidden z-50 mt-2"
+          >
+            {items.map((item, i) => (
+              <Link
+                key={i}
+                to={item.href}
+                className="block px-5 py-2.5 hover:bg-gray-50 text-sm font-medium transition-colors text-gray-600 hover:text-primary"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
 
   return (
     <nav className="absolute top-0 w-full z-50 px-4 py-4 md:px-6 md:py-6 border-b border-white/20">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4 md:gap-8">
           <Link className="font-display text-xl md:text-2xl text-white tracking-wide" to="/">OpenDoor</Link>
-          <div className="hidden md:flex gap-6 text-sm font-medium text-white/90">
-            <Link className="hover:text-white transition-colors" to="/jobs">Find Jobs</Link>
-            <Link className="hover:text-white transition-colors" to="/employers">Employers</Link>
-            <Link className="hover:text-white transition-colors" to="/relocation">Relocation</Link>
+          <div className="hidden md:flex gap-8 text-sm font-medium text-white/90 items-center">
+            <NavDropdown
+              title="Candidates"
+              items={[
+                { label: "Find Jobs", href: "/jobs" },
+                { label: "Relocation", href: "/relocation" },
+                { label: "Visa Guide", href: "/visa-guide" },
+                { label: "Success Stories", href: "/success-stories" }
+              ]}
+            />
+            <NavDropdown
+              title="Employers"
+              items={[
+                { label: "Post a Job", href: "/post-job" },
+                { label: "Talent Solutions", href: "/talent-solutions" },
+                { label: "Pricing", href: "/pricing" },
+                { label: "Blog", href: "/blog" }
+              ]}
+            />
             <Link className="hover:text-white transition-colors" to="/about">About Us</Link>
           </div>
         </div>
@@ -65,31 +125,84 @@ const Navbar = () => {
         </div>
       </div>
 
-      {isMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full left-0 w-full bg-primary/95 backdrop-blur-md border-b border-white/10 py-6 px-6 flex flex-col gap-6 md:hidden shadow-2xl"
-        >
-          <div className="flex flex-col gap-4">
-            <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors" to="/jobs" onClick={() => setIsMenuOpen(false)}>Find Jobs</Link>
-            <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors" to="/employers" onClick={() => setIsMenuOpen(false)}>Employers</Link>
-            <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors" to="/relocation" onClick={() => setIsMenuOpen(false)}>Relocation</Link>
-            <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors" to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-          </div>
-          <hr className="border-white/10" />
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-6">
-              <a className="text-white/70 font-medium hover:text-white transition-colors" href="#">EN</a>
-              <a className="text-white/70 font-medium hover:text-white transition-colors" href="#">SEARCH</a>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full left-0 w-full bg-primary/95 backdrop-blur-md border-b border-white/10 py-6 px-6 flex flex-col gap-6 md:hidden shadow-2xl overflow-y-auto max-h-[80vh]"
+          >
+            <div className="flex flex-col gap-2">
+              {/* Candidates Section */}
+              <div className="border-b border-white/10 pb-2">
+                <button
+                  onClick={() => toggleSection('candidates')}
+                  className="flex justify-between items-center w-full text-white text-lg font-medium py-2 hover:text-white/70 transition-colors"
+                >
+                  Candidates
+                  <ChevronDown className={`w-5 h-5 transition-transform ${openSection === 'candidates' ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {openSection === 'candidates' && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-4 flex flex-col gap-3 pb-2"
+                    >
+                      <Link className="text-white/80 text-base hover:text-white" to="/jobs" onClick={() => setIsMenuOpen(false)}>Find Jobs</Link>
+                      <Link className="text-white/80 text-base hover:text-white" to="/relocation" onClick={() => setIsMenuOpen(false)}>Relocation</Link>
+                      <Link className="text-white/80 text-base hover:text-white" to="/visa-guide" onClick={() => setIsMenuOpen(false)}>Visa Guide</Link>
+                      <Link className="text-white/80 text-base hover:text-white" to="/success-stories" onClick={() => setIsMenuOpen(false)}>Success Stories</Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Employers Section */}
+              <div className="border-b border-white/10 pb-2">
+                <button
+                  onClick={() => toggleSection('employers')}
+                  className="flex justify-between items-center w-full text-white text-lg font-medium py-2 hover:text-white/70 transition-colors"
+                >
+                  Employers
+                  <ChevronDown className={`w-5 h-5 transition-transform ${openSection === 'employers' ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {openSection === 'employers' && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-4 flex flex-col gap-3 pb-2"
+                    >
+                      <Link className="text-white/80 text-base hover:text-white" to="/post-job" onClick={() => setIsMenuOpen(false)}>Post a Job</Link>
+                      <Link className="text-white/80 text-base hover:text-white" to="/talent-solutions" onClick={() => setIsMenuOpen(false)}>Talent Solutions</Link>
+                      <Link className="text-white/80 text-base hover:text-white" to="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
+                      <Link className="text-white/80 text-base hover:text-white" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
             </div>
-            <a className="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100 transition-colors font-bold text-center mt-2" href="#">LOG IN</a>
-          </div>
-        </motion.div>
-      )}
+
+            <div className="flex flex-col gap-4 mt-2">
+              <div className="flex gap-6">
+                <a className="text-white/70 font-medium hover:text-white transition-colors" href="#">EN</a>
+                <a className="text-white/70 font-medium hover:text-white transition-colors" href="#">SEARCH</a>
+              </div>
+              <a className="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100 transition-colors font-bold text-center mt-2" href="#">LOG IN</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
+
 
 const Hero = () => (
   <header className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
@@ -346,7 +459,7 @@ const Footer = () => (
             <li><Link className="hover:text-white transition-colors" to="/post-job">Post a Job</Link></li>
             <li><Link className="hover:text-white transition-colors" to="/talent-solutions">Talent Solutions</Link></li>
             <li><Link className="hover:text-white transition-colors" to="/pricing">Pricing</Link></li>
-            <li><Link className="hover:text-white transition-colors" to="/resources">Resources</Link></li>
+            <li><Link className="hover:text-white transition-colors" to="/blog">Blog</Link></li>
           </ul>
         </div>
         <div>
@@ -720,7 +833,7 @@ const Relocation = () => (
           <Map className="w-10 h-10 text-primary mb-6" />
           <h3 className="font-bold text-xl mb-4">City Guides</h3>
           <p className="text-gray-600 mb-6">Comprehensive guides to neighborhoods, cost of living, and local amenities.</p>
-          <Link to="/resources" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</Link>
+          <Link to="/blog" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</Link>
         </div>
         <div className="bg-gray-50 p-8 rounded-3xl">
           <FileText className="w-10 h-10 text-primary mb-6" />
@@ -828,7 +941,7 @@ export default function App() {
         <Route path="/post-job" element={<PostJob />} />
         <Route path="/talent-solutions" element={<TalentSolutions />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/resources" element={<Resources />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
       <Footer />
