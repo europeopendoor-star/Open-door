@@ -1,52 +1,139 @@
+import { useParams, Link, Navigate } from 'react-router-dom';
 import PageHeader from './components/PageHeader';
+import { blogPosts } from './data/blogPosts';
+import { ArrowLeft, Calendar, Clock, Globe, BarChart2, Tag, Search } from 'lucide-react';
 
-const BlogPost = () => (
-  <div className="min-h-screen bg-white">
-    <PageHeader
-      title="The Ultimate Guide to the EU Blue Card"
-      subtitle="Insights • Oct 12, 2023"
-      bgImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000"
-    />
-    <section className="py-24 px-6 max-w-3xl mx-auto">
-      <div className="prose prose-lg text-gray-600">
-        <p className="lead text-xl mb-8">
-          The EU Blue Card is a work permit for highly skilled non-EU citizens. It offers a fast-track to permanent residence and allows you to work in most EU countries. Here is everything you need to know.
-        </p>
-        <h3 className="font-display text-2xl text-primary mb-4 mt-12">1. Eligibility Criteria</h3>
-        <p className="mb-6">
-          To apply for an EU Blue Card, you typically need:
-        </p>
-        <ul className="list-disc pl-6 mb-6 space-y-2">
-          <li>A valid work contract or binding job offer for at least one year.</li>
-          <li>A salary that meets the minimum threshold (this varies by country, e.g., €58,400 in Germany).</li>
-          <li>A university degree or equivalent professional experience (in some cases).</li>
-        </ul>
+const BlogPost = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const post = blogPosts.find((p) => p.slug === slug);
 
-        <h3 className="font-display text-2xl text-primary mb-4 mt-12">2. Benefits</h3>
-        <p className="mb-6">
-          Holders of the Blue Card enjoy equal treatment with nationals as regards working conditions, education, recognition of diplomas, and social security.
-        </p>
+  if (!post) {
+    return <Navigate to="/blog" replace />;
+  }
 
-        <div className="bg-gray-50 p-8 rounded-2xl my-12 border-l-4 border-primary">
-          <p className="italic font-medium">"The Blue Card was my ticket to a new life in Europe. The process was surprisingly straightforward with the right guidance."</p>
+  return (
+    <div className="min-h-screen bg-white">
+      <PageHeader
+        title={post.title}
+        subtitle={`${post.country} • ${post.publishedDate}`}
+        bgImage={post.image}
+      />
+
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <Link to="/blog" className="inline-flex items-center gap-2 text-gray-500 hover:text-primary font-bold uppercase tracking-wider text-xs mb-12 transition-colors">
+          <ArrowLeft className="w-4 h-4" /> Back to Articles
+        </Link>
+
+        <div className="flex flex-col lg:flex-row gap-16">
+          {/* Main Content Area */}
+          <div className="w-full lg:w-2/3">
+            <div className="prose prose-lg text-gray-600 max-w-none">
+              <p className="lead text-xl mb-8 font-medium text-gray-800">
+                {post.metaDescription}
+              </p>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-12">
+                <h3 className="text-blue-900 font-bold text-lg mb-2 flex items-center gap-2">
+                  <Search className="w-5 h-5" /> Article Insights
+                </h3>
+                <p className="text-blue-800 mb-0">
+                  <strong>Primary Keyword:</strong> {post.primaryKeyword}<br/>
+                  <strong>Search Intent:</strong> {post.searchIntent}
+                </p>
+              </div>
+
+              <h2 className="font-display text-3xl text-gray-900 mt-12 mb-6">Article Overview</h2>
+              <p>
+                This comprehensive guide explores opportunities for professionals from <strong>{post.country}</strong>.
+                It covers key aspects of international recruitment, visa processes, and cultural adaptation.
+              </p>
+
+              <p>
+                <em>Full article content is currently being drafted by our editorial team.</em>
+              </p>
+
+              <h3 className="font-display text-2xl text-primary mt-12 mb-4">Key Topics Covered</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Understanding the market for {post.primaryKeyword}.</li>
+                <li>Step-by-step application process for {post.country} citizens.</li>
+                <li>Success stories and interviews with experts.</li>
+                <li>Detailed salary expectations and cost of living adjustments.</li>
+              </ul>
+
+            </div>
+
+            <div className="mt-16 pt-12 border-t border-gray-100">
+              <h3 className="font-bold text-xl mb-6">Recommended Resources</h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {post.suggestedInternalLinks.map((link, i) => (
+                  <Link key={i} to={link} className="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-100">
+                    <span className="text-primary font-bold text-sm block mb-1">Internal Resource</span>
+                    <span className="text-gray-900 font-medium">Read more about this topic</span>
+                  </Link>
+                ))}
+                {post.suggestedExternalLinks.map((link, i) => (
+                  <a key={i} href={link} target="_blank" rel="noopener noreferrer" className="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-100">
+                    <span className="text-gray-500 font-bold text-sm block mb-1">External Link</span>
+                    <span className="text-gray-900 font-medium truncate">Visit Authority Site</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="w-full lg:w-1/3 space-y-8">
+            <div className="bg-gray-50 p-8 rounded-3xl">
+              <h3 className="font-bold text-xl mb-6">Quick Stats</h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-white p-2.5 rounded-lg shadow-sm text-primary">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Read Time</p>
+                    <p className="font-bold text-gray-900">{post.readTime}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-white p-2.5 rounded-lg shadow-sm text-primary">
+                    <Globe className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Target Region</p>
+                    <p className="font-bold text-gray-900">{post.country}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-white p-2.5 rounded-lg shadow-sm text-primary">
+                    <BarChart2 className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Est. Monthly Interest</p>
+                    <p className="font-bold text-gray-900">{post.estimatedTraffic}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-sm">
+              <h3 className="font-bold text-xl mb-6">Related Keywords</h3>
+              <div className="flex flex-wrap gap-2">
+                {[post.primaryKeyword, ...post.secondaryKeywords].map((keyword, i) => (
+                  <span key={i} className="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
+                    <Tag className="w-3 h-3" />
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-
-        <h3 className="font-display text-2xl text-primary mb-4 mt-12">3. How to Apply</h3>
-        <p className="mb-6">
-          You can apply at the consulate in your home country or, if you are already legally in the EU, at the local immigration office. Processing times can vary from a few weeks to three months.
-        </p>
-      </div>
-
-      <div className="mt-24 pt-12 border-t border-gray-100">
-        <h3 className="font-bold text-xl mb-6">Share this article</h3>
-        <div className="flex gap-4">
-          <button className="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full text-sm font-bold transition-colors">Twitter</button>
-          <button className="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full text-sm font-bold transition-colors">LinkedIn</button>
-          <button className="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full text-sm font-bold transition-colors">Email</button>
-        </div>
-      </div>
-    </section>
-  </div>
-);
+      </section>
+    </div>
+  );
+};
 
 export default BlogPost;
