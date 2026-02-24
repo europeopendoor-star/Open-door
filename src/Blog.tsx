@@ -64,7 +64,7 @@ const Blog = () => {
 
             {filteredPosts.length > 0 ? (
               filteredPosts.map((article) => (
-                <div key={article.slug} className="flex flex-col sm:flex-row gap-8 group cursor-pointer border-b border-gray-100 pb-12 last:border-0">
+                <Link key={article.slug} to={`/blog/${article.slug}`} className="flex flex-col sm:flex-row gap-8 group cursor-pointer border-b border-gray-100 pb-12 last:border-0">
                   <div className="w-full sm:w-64 h-48 rounded-2xl overflow-hidden flex-shrink-0 relative">
                     <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
@@ -79,11 +79,11 @@ const Blog = () => {
                     </div>
                     <h3 className="font-bold text-2xl mb-3 group-hover:text-primary transition-colors">{article.title}</h3>
                     <p className="text-gray-600 mb-4 line-clamp-2">{article.metaDescription}</p>
-                    <Link to={`/blog/${article.slug}`} className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70 inline-flex items-center gap-2">
+                    <span className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70 inline-flex items-center gap-2">
                       Read More
-                    </Link>
+                    </span>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <div className="text-center py-12 bg-gray-50 rounded-3xl">

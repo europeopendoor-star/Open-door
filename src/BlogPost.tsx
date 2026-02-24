@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import PageHeader from './components/PageHeader';
 import { blogPosts } from './data/blogPosts';
-import { ArrowLeft, Calendar, Clock, Globe, BarChart2, Tag, Search } from 'lucide-react';
+import { ArrowLeft, Clock, Globe, BarChart2, BookOpen } from 'lucide-react';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -10,6 +10,20 @@ const BlogPost = () => {
   if (!post) {
     return <Navigate to="/blog" replace />;
   }
+
+  // Logic for Related Articles
+  // Prioritize same country, then recent posts. Exclude current post.
+  const relatedPosts = blogPosts
+    .filter(p => p.slug !== post.slug)
+    .sort((a, b) => {
+        // Simple scoring: 2 points for same country
+        let scoreA = 0;
+        let scoreB = 0;
+        if (a.country === post.country) scoreA += 2;
+        if (b.country === post.country) scoreB += 2;
+        return scoreB - scoreA;
+    })
+    .slice(0, 5);
 
   return (
     <div className="min-h-screen bg-white">
@@ -28,37 +42,9 @@ const BlogPost = () => {
           {/* Main Content Area */}
           <div className="w-full lg:w-2/3">
             <div className="prose prose-lg text-gray-600 max-w-none">
-              <p className="lead text-xl mb-8 font-medium text-gray-800">
-                {post.metaDescription}
-              </p>
 
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-12">
-                <h3 className="text-blue-900 font-bold text-lg mb-2 flex items-center gap-2">
-                  <Search className="w-5 h-5" /> Article Insights
-                </h3>
-                <p className="text-blue-800 mb-0">
-                  <strong>Primary Keyword:</strong> {post.primaryKeyword}<br/>
-                  <strong>Search Intent:</strong> {post.searchIntent}
-                </p>
-              </div>
-
-              <h2 className="font-display text-3xl text-gray-900 mt-12 mb-6">Article Overview</h2>
-              <p>
-                This comprehensive guide explores opportunities for professionals from <strong>{post.country}</strong>.
-                It covers key aspects of international recruitment, visa processes, and cultural adaptation.
-              </p>
-
-              <p>
-                <em>Full article content is currently being drafted by our editorial team.</em>
-              </p>
-
-              <h3 className="font-display text-2xl text-primary mt-12 mb-4">Key Topics Covered</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Understanding the market for {post.primaryKeyword}.</li>
-                <li>Step-by-step application process for {post.country} citizens.</li>
-                <li>Success stories and interviews with experts.</li>
-                <li>Detailed salary expectations and cost of living adjustments.</li>
-              </ul>
+              {/* Render Dynamic Content */}
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
             </div>
 
@@ -118,14 +104,22 @@ const BlogPost = () => {
               </div>
             </div>
 
+            {/* Related Articles Section (Replaces Related Keywords) */}
             <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-sm">
-              <h3 className="font-bold text-xl mb-6">Related Keywords</h3>
-              <div className="flex flex-wrap gap-2">
-                {[post.primaryKeyword, ...post.secondaryKeywords].map((keyword, i) => (
-                  <span key={i} className="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
-                    <Tag className="w-3 h-3" />
-                    {keyword}
-                  </span>
+              <h3 className="font-bold text-xl mb-6">Related Articles</h3>
+              <div className="space-y-4">
+                {relatedPosts.map((relatedPost) => (
+                  <Link key={relatedPost.slug} to={`/blog/${relatedPost.slug}`} className="group flex gap-4 items-start">
+                    <div className="bg-gray-100 p-2 rounded-lg text-gray-400 group-hover:text-primary group-hover:bg-blue-50 transition-colors">
+                        <BookOpen className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h4 className="font-bold text-gray-900 text-sm group-hover:text-primary transition-colors line-clamp-2">
+                            {relatedPost.title}
+                        </h4>
+                        <p className="text-xs text-gray-500 mt-1">{relatedPost.country}</p>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
