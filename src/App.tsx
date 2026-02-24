@@ -35,7 +35,17 @@ import {
   CheckCircle2,
   FileText,
   Map,
-  BookOpen
+  BookOpen,
+  Code2,
+  Database,
+  Cloud,
+  PenTool,
+  Sparkles,
+  Utensils,
+  Sprout,
+  Car,
+  Wrench,
+  Shield
 } from "lucide-react";
 
 const NavDropdown = ({ title, items }: { title: string, items: { label: string, href: string }[] }) => {
@@ -680,6 +690,44 @@ const JOBS = [
   { title: "Hospital Cleaner", company: "Central Hospital", location: "Zurich, Switzerland", salary: "CHF 50k - 60k", tags: ['Healthcare', 'Sterile'], image: "https://loremflickr.com/200/200/hospital?lock=28" },
 ];
 
+
+const getJobIcon = (title: string) => {
+  const lowerTitle = title.toLowerCase();
+
+  if (lowerTitle.includes('engineer') || lowerTitle.includes('developer') || lowerTitle.includes('architect') || lowerTitle.includes('stack')) {
+    return <Code2 className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('designer')) {
+    return <PenTool className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('data') || lowerTitle.includes('analyst')) {
+    return <Database className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('cloud') || lowerTitle.includes('devops')) {
+    return <Cloud className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('cleaner') || lowerTitle.includes('janitor') || lowerTitle.includes('housekeeper') || lowerTitle.includes('attendant') || lowerTitle.includes('sweeper') || lowerTitle.includes('caretaker') || lowerTitle.includes('waste') || lowerTitle.includes('sanitation')) {
+    return <Sparkles className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('kitchen') || lowerTitle.includes('dishwasher') || lowerTitle.includes('steward') || lowerTitle.includes('cook')) {
+    return <Utensils className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('gardener') || lowerTitle.includes('groundskeeper')) {
+    return <Sprout className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('driver') || lowerTitle.includes('mechanic') || lowerTitle.includes('auto') || lowerTitle.includes('car')) {
+    return <Car className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('maintenance') || lowerTitle.includes('fix')) {
+    return <Wrench className="w-8 h-8 text-primary" />;
+  }
+  if (lowerTitle.includes('security')) {
+    return <Shield className="w-8 h-8 text-primary" />;
+  }
+
+  return <Briefcase className="w-8 h-8 text-primary" />;
+};
+
 const FindJobs = () => (
   <div className="min-h-screen bg-gray-50">
     <PageHeader 
@@ -747,7 +795,7 @@ const FindJobs = () => (
           <div className="space-y-4">
             {JOBS.map((job, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">{job.image ? <img src={job.image} alt={job.title} className="w-full h-full object-cover rounded-xl" /> : <Briefcase className="w-8 h-8 text-gray-400" />}</div>
+                <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">{getJobIcon(job.title)}</div>
                 <div className="flex-1">
                   <h3 className="font-bold text-xl text-primary mb-2">{job.title}</h3>
                   <p className="text-sm text-gray-500 mb-4">{job.company} • {job.location} • {job.salary}</p>
