@@ -649,6 +649,37 @@ const Home = () => (
   </>
 );
 
+const JOBS = [
+  { title: "Senior React Engineer", company: "TechCorp GmbH", location: "Berlin, Germany", salary: "€75k - €95k", tags: ['Visa Sponsorship', 'Hybrid', 'React'], image: "https://loremflickr.com/200/200/software?lock=1" },
+  { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, Netherlands", salary: "€65k - €85k", tags: ['Relocation', 'On-site', 'Figma'], image: "https://loremflickr.com/200/200/design?lock=2" },
+  { title: "Backend Developer (Go)", company: "FinTech AB", location: "Stockholm, Sweden", salary: "€70k - €90k", tags: ['Visa Sponsorship', 'Remote', 'Go'], image: "https://loremflickr.com/200/200/coding?lock=3" },
+  { title: "Data Scientist", company: "AI Solutions", location: "Paris, France", salary: "€60k - €80k", tags: ['Visa Sponsorship', 'Python', 'ML'], image: "https://loremflickr.com/200/200/data?lock=4" },
+  { title: "DevOps Engineer", company: "Cloud Systems", location: "Barcelona, Spain", salary: "€55k - €75k", tags: ['Relocation', 'AWS', 'K8s'], image: "https://loremflickr.com/200/200/server?lock=5" },
+  { title: "Frontend Lead", company: "E-commerce Inc", location: "Berlin, Germany", salary: "€85k - €110k", tags: ['Visa Sponsorship', 'Vue.js', 'Lead'], image: "https://loremflickr.com/200/200/frontend?lock=6" },
+  { title: "UX Researcher", company: "UserFirst", location: "Amsterdam, Netherlands", salary: "€55k - €75k", tags: ['Relocation', 'Research'], image: "https://loremflickr.com/200/200/research?lock=7" },
+  { title: "Cloud Architect", company: "Enterprise IT", location: "Stockholm, Sweden", salary: "€80k - €100k", tags: ['Relocation Pkg', 'On-site', 'AWS'], image: "https://loremflickr.com/200/200/cloud?lock=8" },
+  { title: "Janitor", company: "CleanSpace GmbH", location: "Berlin, Germany", salary: "€28k - €32k", tags: ['Visa Sponsorship', 'On-site'], image: "https://loremflickr.com/200/200/janitor?lock=9" },
+  { title: "Housekeeper", company: "Grand Hotel", location: "Paris, France", salary: "€26k - €30k", tags: ['Accommodation', 'Shift Work'], image: "https://loremflickr.com/200/200/housekeeper?lock=10" },
+  { title: "Room Attendant", company: "Luxury Stay", location: "Rome, Italy", salary: "€24k - €28k", tags: ['Tips', 'Full-time'], image: "https://loremflickr.com/200/200/hotel?lock=11" },
+  { title: "Office Cleaner", company: "CorpClean", location: "London, UK", salary: "£22k - £26k", tags: ['Part-time', 'Evening'], image: "https://loremflickr.com/200/200/office,cleaner?lock=12" },
+  { title: "Laundry Attendant", company: "PureWash", location: "Munich, Germany", salary: "€25k - €29k", tags: ['Training Provided', 'Day Shift'], image: "https://loremflickr.com/200/200/laundry?lock=13" },
+  { title: "Kitchen Steward", company: "Gourmet Bistro", location: "Lyon, France", salary: "€27k - €31k", tags: ['Meals Included', 'Busy'], image: "https://loremflickr.com/200/200/kitchen?lock=14" },
+  { title: "Dishwasher", company: "City Restaurant", location: "Barcelona, Spain", salary: "€23k - €26k", tags: ['Entry Level', 'Urgent'], image: "https://loremflickr.com/200/200/dishwasher?lock=15" },
+  { title: "Waste Collector", company: "EcoServices", location: "Amsterdam, Netherlands", salary: "€30k - €36k", tags: ['Union', 'Early Shift'], image: "https://loremflickr.com/200/200/waste?lock=16" },
+  { title: "Sanitation Worker", company: "Public Works", location: "Brussels, Belgium", salary: "€29k - €34k", tags: ['Government', 'Benefits'], image: "https://loremflickr.com/200/200/sanitation?lock=17" },
+  { title: "Groundskeeper", company: "University Campus", location: "Dublin, Ireland", salary: "€28k - €33k", tags: ['Outdoor', 'Seasonal'], image: "https://loremflickr.com/200/200/groundskeeper?lock=18" },
+  { title: "Gardener", company: "Royal Parks", location: "London, UK", salary: "£26k - £32k", tags: ['Creative', 'Outdoor'], image: "https://loremflickr.com/200/200/garden?lock=19" },
+  { title: "Car Wash Attendant", company: "Sparkle Auto", location: "Milan, Italy", salary: "€22k - €25k", tags: ['Tips', 'Flexible'], image: "https://loremflickr.com/200/200/carwash?lock=20" },
+  { title: "Maintenance Assistant", company: "Property Fix", location: "Berlin, Germany", salary: "€32k - €38k", tags: ['Visa Sponsorship', 'Tools Provided'], image: "https://loremflickr.com/200/200/maintenance?lock=21" },
+  { title: "Facility Attendant", company: "Sports Complex", location: "Madrid, Spain", salary: "€25k - €29k", tags: ['Weekend', 'Gym Access'], image: "https://loremflickr.com/200/200/facility?lock=22" },
+  { title: "Public Area Attendant", company: "Shopping Mall", location: "Warsaw, Poland", salary: "PLN 40k - 50k", tags: ['Shift Work', 'Indoor'], image: "https://loremflickr.com/200/200/cleaner?lock=23" },
+  { title: "Building Caretaker", company: "Residential Block", location: "Vienna, Austria", salary: "€30k - €35k", tags: ['Accommodation', 'Full-time'], image: "https://loremflickr.com/200/200/building?lock=24" },
+  { title: "Pest Control Assistant", company: "NoPests", location: "Lisbon, Portugal", salary: "€26k - €31k", tags: ['Training', 'Travel'], image: "https://loremflickr.com/200/200/pestcontrol?lock=25" },
+  { title: "Street Sweeper", company: "City Council", location: "Prague, Czechia", salary: "CZK 500k - 600k", tags: ['Public Sector', 'Pension'], image: "https://loremflickr.com/200/200/street?lock=26" },
+  { title: "Factory Cleaner", company: "AutoPlant", location: "Stuttgart, Germany", salary: "€30k - €36k", tags: ['Night Shift', 'Bonus'], image: "https://loremflickr.com/200/200/factory?lock=27" },
+  { title: "Hospital Cleaner", company: "Central Hospital", location: "Zurich, Switzerland", salary: "CHF 50k - 60k", tags: ['Healthcare', 'Sterile'], image: "https://loremflickr.com/200/200/hospital?lock=28" },
+];
+
 const FindJobs = () => (
   <div className="min-h-screen bg-gray-50">
     <PageHeader 
@@ -714,20 +745,9 @@ const FindJobs = () => (
           </div>
 
           <div className="space-y-4">
-            {[
-              { title: "Senior React Engineer", company: "TechCorp GmbH", location: "Berlin, Germany", salary: "€75k - €95k", tags: ["Visa Sponsorship", "Hybrid", "React"] },
-              { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, Netherlands", salary: "€65k - €85k", tags: ["Relocation", "On-site", "Figma"] },
-              { title: "Backend Developer (Go)", company: "FinTech AB", location: "Stockholm, Sweden", salary: "€70k - €90k", tags: ["Visa Sponsorship", "Remote", "Go"] },
-              { title: "Data Scientist", company: "AI Solutions", location: "Paris, France", salary: "€60k - €80k", tags: ["Visa Sponsorship", "Python", "ML"] },
-              { title: "DevOps Engineer", company: "Cloud Systems", location: "Barcelona, Spain", salary: "€55k - €75k", tags: ["Relocation", "AWS", "K8s"] },
-              { title: "Frontend Lead", company: "E-commerce Inc", location: "Berlin, Germany", salary: "€85k - €110k", tags: ["Visa Sponsorship", "Vue.js", "Lead"] },
-              { title: "UX Researcher", company: "UserFirst", location: "Amsterdam, Netherlands", salary: "€55k - €75k", tags: ["Relocation", "Research"] },
-              { title: "Cloud Architect", company: "Enterprise IT", location: "Stockholm, Sweden", salary: "€80k - €100k", tags: ["Relocation Pkg", "On-site", "AWS"] }
-            ].map((job, i) => (
+            {JOBS.map((job, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Briefcase className="w-8 h-8 text-gray-400" />
-                </div>
+                <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">{job.image ? <img src={job.image} alt={job.title} className="w-full h-full object-cover rounded-xl" /> : <Briefcase className="w-8 h-8 text-gray-400" />}</div>
                 <div className="flex-1">
                   <h3 className="font-bold text-xl text-primary mb-2">{job.title}</h3>
                   <p className="text-sm text-gray-500 mb-4">{job.company} • {job.location} • {job.salary}</p>
