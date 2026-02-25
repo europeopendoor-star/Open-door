@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import PageHeader from './components/PageHeader';
 import VisaGuide from './VisaGuide';
 import SuccessStories from './SuccessStories';
@@ -14,6 +14,7 @@ import TalentSolutions from './TalentSolutions';
 import Pricing from './Pricing';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
+import Contact from './Contact';
 import {
   Search, 
   Briefcase, 
@@ -22,7 +23,6 @@ import {
   Handshake, 
   Home as HomeIcon, 
   GraduationCap, 
-  ArrowRight,
   Globe,
   Mail,
   Phone,
@@ -30,7 +30,6 @@ import {
   ChevronDown,
   X,
   Filter,
-  Building,
   Users,
   CheckCircle2,
   FileText,
@@ -45,7 +44,8 @@ import {
   Sprout,
   Car,
   Wrench,
-  Shield
+  Shield,
+  Send
 } from "lucide-react";
 
 const NavDropdown = ({ title, items }: { title: string, items: { label: string, href: string }[] }) => {
@@ -120,6 +120,7 @@ const Navbar = () => {
             />
             <Link className="hover:text-white transition-colors" to="/blog">Blog</Link>
             <Link className="hover:text-white transition-colors" to="/about">About Us</Link>
+            <Link className="hover:text-white transition-colors" to="/contact">Contact</Link>
           </div>
         </div>
         <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-white">
@@ -198,6 +199,7 @@ const Navbar = () => {
 
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+              <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
             </div>
 
             <div className="flex flex-col gap-4 mt-2">
@@ -215,71 +217,85 @@ const Navbar = () => {
 };
 
 
-const Hero = () => (
-  <header className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
-    <div className="absolute inset-0 z-0">
-      <img 
-        alt="European Cityscape" 
-        className="w-full h-full object-cover" 
-        src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&q=80&w=2000"
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
-    </div>
-    <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-32 md:pt-20">
-      <motion.h1 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="font-display text-4xl sm:text-5xl md:text-8xl text-white mb-6 leading-tight drop-shadow-lg"
-      >
-        Unlock Your <br/>
-        <span className="italic font-light">Career in Europe</span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-        className="text-white/90 text-sm md:text-base tracking-widest uppercase mb-12 font-medium"
-      >
-        Premier Recruitment for International Talent & Global Companies
-      </motion.p>
-      
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl md:rounded-full max-w-3xl mx-auto flex flex-col md:flex-row gap-2"
-      >
-        <div className="flex-1 relative group">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Briefcase className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+const Hero = () => {
+  const [jobTitle, setJobTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate(`/jobs?search=${encodeURIComponent(jobTitle)}&location=${encodeURIComponent(location)}`);
+  };
+
+  return (
+    <header className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+      <div className="absolute inset-0 z-0">
+        <img
+          alt="European Cityscape"
+          className="w-full h-full object-cover"
+          src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&q=80&w=2000"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+      </div>
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-32 md:pt-20">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="font-display text-4xl sm:text-5xl md:text-8xl text-white mb-6 leading-tight drop-shadow-lg"
+        >
+          Unlock Your <br/>
+          <span className="italic font-light">Career in Europe</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="text-white/90 text-sm md:text-base tracking-widest uppercase mb-12 font-medium"
+        >
+          Premier Recruitment for International Talent & Global Companies
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl md:rounded-full max-w-3xl mx-auto flex flex-col md:flex-row gap-2"
+        >
+          <div className="flex-1 relative group">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Briefcase className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+            </div>
+            <input
+              className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none"
+              placeholder="Job title or keywords"
+              type="text"
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
+            />
           </div>
-          <input 
-            className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none" 
-            placeholder="Job title or keywords" 
-            type="text"
-          />
-        </div>
-        <div className="w-px bg-white/20 hidden md:block"></div>
-        <div className="flex-1 relative group">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <MapPin className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+          <div className="w-px bg-white/20 hidden md:block"></div>
+          <div className="flex-1 relative group">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <MapPin className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+            </div>
+            <input
+              className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none"
+              placeholder="Country or City"
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
           </div>
-          <input 
-            className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none" 
-            placeholder="Country or City" 
-            type="text"
-          />
-        </div>
-        <Link to="/jobs" className="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg md:min-w-[140px] flex items-center justify-center gap-2">
-          <Search className="w-4 h-4" />
-          Search Jobs
-        </Link>
-      </motion.div>
-    </div>
-  </header>
-);
+          <button onClick={handleSearch} className="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg md:min-w-[140px] flex items-center justify-center gap-2">
+            <Search className="w-4 h-4" />
+            Search Jobs
+          </button>
+        </motion.div>
+      </div>
+    </header>
+  );
+};
 
 const Values = () => (
   <section className="pt-16 pb-8 px-6 max-w-7xl mx-auto">
@@ -479,6 +495,7 @@ const Footer = () => (
             <li>europeopendoor@gmail.com</li>
             <li>+4915210755401</li>
             <li>Berlin, Germany</li>
+            <li><Link className="hover:text-white transition-colors" to="/contact">Contact Form</Link></li>
           </ul>
           <div className="flex gap-4 mt-6">
             <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">
@@ -605,28 +622,61 @@ const Testimonials = () => (
   </section>
 );
 
-const Newsletter = () => (
-  <section className="py-24 px-6 max-w-7xl mx-auto mb-24">
-    <div className="bg-accent-lime rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-10 left-10 w-64 h-64 border-4 border-primary rounded-full"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 border-4 border-primary rounded-full"></div>
+const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if(email) {
+      setIsSubscribed(true);
+      setEmail("");
+    }
+  };
+
+  return (
+    <section className="py-24 px-6 max-w-7xl mx-auto mb-24">
+      <div className="bg-accent-lime rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-10 left-10 w-64 h-64 border-4 border-primary rounded-full"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 border-4 border-primary rounded-full"></div>
+        </div>
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <h2 className="font-display text-5xl md:text-6xl text-primary mb-8">Stay ahead of the curve</h2>
+          <p className="text-primary/70 text-lg mb-12">Get weekly insights on the European job market, visa updates, and exclusive relocation guides delivered to your inbox.</p>
+
+          {isSubscribed ? (
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-sm">
+               <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                 <Send className="w-8 h-8" />
+               </div>
+               <h3 className="font-bold text-2xl text-primary mb-2">You're Subscribed!</h3>
+               <p className="text-primary/70 mb-6">Thanks for joining our community. Keep an eye on your inbox.</p>
+               <button
+                 onClick={() => setIsSubscribed(false)}
+                 className="text-primary font-bold hover:underline text-sm uppercase tracking-wider"
+               >
+                 Subscribe another email
+               </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="flex-1 bg-white/50 backdrop-blur-sm border-2 border-primary/10 rounded-full px-8 py-4 text-primary placeholder-primary/40 focus:outline-none focus:border-primary transition-colors"
+              />
+              <button className="bg-primary text-white font-bold px-10 py-4 rounded-full hover:bg-primary/90 transition-colors uppercase tracking-widest text-sm">Subscribe</button>
+            </form>
+          )}
+        </div>
       </div>
-      <div className="relative z-10 max-w-2xl mx-auto">
-        <h2 className="font-display text-5xl md:text-6xl text-primary mb-8">Stay ahead of the curve</h2>
-        <p className="text-primary/70 text-lg mb-12">Get weekly insights on the European job market, visa updates, and exclusive relocation guides delivered to your inbox.</p>
-        <form className="flex flex-col md:flex-row gap-4">
-          <input 
-            type="email" 
-            placeholder="your@email.com" 
-            className="flex-1 bg-white/50 backdrop-blur-sm border-2 border-primary/10 rounded-full px-8 py-4 text-primary placeholder-primary/40 focus:outline-none focus:border-primary transition-colors"
-          />
-          <button className="bg-primary text-white font-bold px-10 py-4 rounded-full hover:bg-primary/90 transition-colors uppercase tracking-widest text-sm">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const FAQ = () => (
   <section className="max-w-4xl mx-auto px-6 mb-24">
@@ -729,96 +779,210 @@ const getJobIcon = (title: string) => {
   return <Briefcase className="w-8 h-8 text-primary" />;
 };
 
-const FindJobs = () => (
-  <div className="min-h-screen bg-gray-50">
-    <PageHeader 
-      title="Find Your Next Role" 
-      subtitle="Explore opportunities across Europe with visa sponsorship"
-      bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
-    />
-    <section className="py-16 px-6 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-64 flex-shrink-0">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-              <Filter className="w-5 h-5" /> Filters
-            </h3>
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-semibold text-sm mb-3">Role Type</h4>
-                <div className="space-y-2">
-                  {['Engineering', 'Design', 'Product', 'Data', 'Marketing'].map(role => (
-                    <label key={role} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded text-primary focus:ring-primary" />
-                      <span className="text-sm text-gray-600">{role}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-3">Location</h4>
-                <div className="space-y-2">
-                  {['Germany', 'Netherlands', 'Sweden', 'Spain', 'France'].map(loc => (
-                    <label key={loc} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded text-primary focus:ring-primary" />
-                      <span className="text-sm text-gray-600">{loc}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-3">Visa Support</h4>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="rounded text-primary focus:ring-primary" defaultChecked />
-                  <span className="text-sm text-gray-600">Visa Sponsorship</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer mt-2">
-                  <input type="checkbox" className="rounded text-primary focus:ring-primary" />
-                  <span className="text-sm text-gray-600">Relocation Package</span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
+const FindJobs = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [locationTerm, setLocationTerm] = useState("");
+  const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [visaSupport, setVisaSupport] = useState(false);
+  const [relocation, setRelocation] = useState(false);
+  const location = useLocation();
 
-        <div className="flex-1">
-          <div className="mb-8">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search by job title, company, or keywords..."
-                className="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
-              />
-            </div>
-          </div>
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const search = params.get('search');
+    const loc = params.get('location');
 
-          <div className="space-y-4">
-            {JOBS.map((job, i) => (
-              <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">{getJobIcon(job.title)}</div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-xl text-primary mb-2">{job.title}</h3>
-                  <p className="text-sm text-gray-500 mb-4">{job.company} • {job.location} • {job.salary}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {job.tags.map(tag => (
-                      <span key={tag} className={`${tag.includes('Visa') || tag.includes('Relocation') ? 'bg-accent-lime/20 text-primary' : 'bg-gray-100 text-gray-600'} px-3 py-1 rounded-full text-xs font-bold`}>
-                        {tag}
-                      </span>
+    if (search) setSearchTerm(search);
+    if (loc) setLocationTerm(loc);
+  }, [location.search]);
+
+  const toggleRole = (role: string) => {
+    setSelectedRoles(prev =>
+      prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role]
+    );
+  };
+
+  const toggleLocation = (loc: string) => {
+    setSelectedLocations(prev =>
+      prev.includes(loc) ? prev.filter(l => l !== loc) : [...prev, loc]
+    );
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setLocationTerm("");
+    setSelectedRoles([]);
+    setSelectedLocations([]);
+    setVisaSupport(false);
+    setRelocation(false);
+  };
+
+  const filteredJobs = JOBS.filter(job => {
+    // Search Term Filter
+    const matchesSearch = searchTerm === "" ||
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.company.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // Location Term Filter (from Hero)
+    const matchesLocationTerm = locationTerm === "" ||
+      job.location.toLowerCase().includes(locationTerm.toLowerCase());
+
+    // Role Filter
+    const jobRole = (() => {
+      const t = job.title.toLowerCase();
+      if (t.includes('engineer') || t.includes('developer')) return 'Engineering';
+      if (t.includes('designer')) return 'Design';
+      if (t.includes('product')) return 'Product';
+      if (t.includes('data')) return 'Data';
+      if (t.includes('marketing')) return 'Marketing';
+      return 'Other';
+    })();
+    const matchesRole = selectedRoles.length === 0 || selectedRoles.includes(jobRole);
+
+    // Location Checkbox Filter
+    const matchesLocationCheckbox = selectedLocations.length === 0 ||
+      selectedLocations.some(loc => job.location.includes(loc));
+
+    // Visa & Relocation
+    const matchesVisa = !visaSupport || job.tags.some(t => t.toLowerCase().includes('visa'));
+    const matchesRelocation = !relocation || job.tags.some(t => t.toLowerCase().includes('relocation'));
+
+    return matchesSearch && matchesLocationTerm && matchesRole && matchesLocationCheckbox && matchesVisa && matchesRelocation;
+  });
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <PageHeader
+        title="Find Your Next Role"
+        subtitle="Explore opportunities across Europe with visa sponsorship"
+        bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
+      />
+      <section className="py-16 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="w-full md:w-64 flex-shrink-0">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
+              <div className="flex justify-between items-center mb-6">
+                 <h3 className="font-bold text-lg flex items-center gap-2">
+                  <Filter className="w-5 h-5" /> Filters
+                </h3>
+                <button onClick={clearFilters} className="text-xs font-bold text-primary hover:underline">Clear All</button>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-sm mb-3">Role Type</h4>
+                  <div className="space-y-2">
+                    {['Engineering', 'Design', 'Product', 'Data', 'Marketing'].map(role => (
+                      <label key={role} className="flex items-center gap-2 cursor-pointer group">
+                        <div className="relative flex items-center">
+                          <input
+                            type="checkbox"
+                            className="peer h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/20"
+                            checked={selectedRoles.includes(role)}
+                            onChange={() => toggleRole(role)}
+                          />
+                        </div>
+                        <span className="text-sm text-gray-600 group-hover:text-primary transition-colors">{role}</span>
+                      </label>
                     ))}
                   </div>
                 </div>
-                <button className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
-                  Apply
-                </button>
+                <div>
+                  <h4 className="font-semibold text-sm mb-3">Location</h4>
+                  <div className="space-y-2">
+                    {['Germany', 'Netherlands', 'Sweden', 'Spain', 'France'].map(loc => (
+                      <label key={loc} className="flex items-center gap-2 cursor-pointer group">
+                         <input
+                            type="checkbox"
+                            className="peer h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/20"
+                            checked={selectedLocations.includes(loc)}
+                            onChange={() => toggleLocation(loc)}
+                          />
+                        <span className="text-sm text-gray-600 group-hover:text-primary transition-colors">{loc}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm mb-3">Visa Support</h4>
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      className="peer h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/20"
+                      checked={visaSupport}
+                      onChange={(e) => setVisaSupport(e.target.checked)}
+                    />
+                    <span className="text-sm text-gray-600 group-hover:text-primary transition-colors">Visa Sponsorship</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer mt-2 group">
+                    <input
+                      type="checkbox"
+                      className="peer h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/20"
+                      checked={relocation}
+                      onChange={(e) => setRelocation(e.target.checked)}
+                    />
+                    <span className="text-sm text-gray-600 group-hover:text-primary transition-colors">Relocation Package</span>
+                  </label>
+                </div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <div className="mb-8">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search by job title, company, or keywords..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm transition-shadow"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {filteredJobs.length > 0 ? (
+                filteredJobs.map((job, i) => (
+                  <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center group">
+                    <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/5 transition-colors">
+                      {getJobIcon(job.title)}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-xl text-primary mb-2 group-hover:text-primary/80 transition-colors">{job.title}</h3>
+                      <p className="text-sm text-gray-500 mb-4">{job.company} • {job.location} • {job.salary}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {job.tags.map(tag => (
+                          <span key={tag} className={`${tag.toLowerCase().includes('visa') || tag.toLowerCase().includes('relocation') ? 'bg-accent-lime/20 text-primary' : 'bg-gray-100 text-gray-600'} px-3 py-1 rounded-full text-xs font-bold`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <button className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
+                      Apply
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div className="bg-white rounded-2xl p-12 text-center border border-gray-100">
+                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Search className="w-10 h-10 text-gray-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">No jobs found</h3>
+                  <p className="text-gray-500 mb-6">We couldn't find any positions matching your current filters.</p>
+                  <button onClick={clearFilters} className="text-primary font-bold hover:underline">Clear all filters</button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-);
+      </section>
+    </div>
+  );
+};
 
 const Employers = () => (
   <div className="min-h-screen bg-white">
@@ -855,9 +1019,9 @@ const Employers = () => (
       <div className="bg-gray-50 rounded-[3rem] p-12 text-center">
         <h2 className="font-display text-4xl mb-6">Ready to expand your team?</h2>
         <p className="text-gray-600 mb-8 max-w-2xl mx-auto">Join hundreds of European companies hiring top international talent through OpenDoor.</p>
-        <button className="bg-primary text-white px-10 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors">
+        <Link to="/contact" className="bg-primary text-white px-10 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors inline-block">
           Schedule a Demo
-        </button>
+        </Link>
       </div>
     </section>
   </div>
@@ -1012,6 +1176,7 @@ export default function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </div>

@@ -1,5 +1,6 @@
 import PageHeader from './components/PageHeader';
 import { CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Pricing = () => (
   <div className="min-h-screen bg-white">
@@ -17,6 +18,7 @@ const Pricing = () => (
             desc: "of first year base salary",
             features: ["No upfront fees", "90-day guarantee", "Standard visa support", "Dedicated account manager"],
             cta: "Get Started",
+            link: "/post-job",
             highlight: false
           },
           {
@@ -25,6 +27,7 @@ const Pricing = () => (
             desc: "of first year base salary",
             features: ["Premium candidate sourcing", "Full relocation concierge", "Spouse visa support", "180-day guarantee", "Custom onboarding plan"],
             cta: "Most Popular",
+            link: "/post-job",
             highlight: true
           },
           {
@@ -33,6 +36,7 @@ const Pricing = () => (
             desc: "volume-based pricing",
             features: ["Employer of Record setup", "Remote hub creation", "Dedicated recruitment team", "Unlimited placements", "Executive search"],
             cta: "Contact Sales",
+            link: "/contact",
             highlight: false
           }
         ].map((tier, i) => (
@@ -50,9 +54,9 @@ const Pricing = () => (
                 </li>
               ))}
             </ul>
-            <button className={`w-full py-4 rounded-xl font-bold transition-colors ${tier.highlight ? 'bg-accent-lime text-primary hover:bg-white' : 'bg-primary text-white hover:bg-primary/90'}`}>
+            <Link to={tier.link} className={`w-full py-4 rounded-xl font-bold transition-colors text-center block ${tier.highlight ? 'bg-accent-lime text-primary hover:bg-white' : 'bg-primary text-white hover:bg-primary/90'}`}>
               {tier.cta}
-            </button>
+            </Link>
           </div>
         ))}
       </div>
