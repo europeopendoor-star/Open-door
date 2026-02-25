@@ -18,7 +18,7 @@ const TalentSolutions = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
-        <div className="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-primary hover:text-white transition-all duration-300 group">
+        <div className="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-primary hover:text-white transition-all duration-300 group cursor-pointer">
           <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm">
             <Globe className="w-8 h-8 text-primary" />
           </div>
@@ -27,7 +27,7 @@ const TalentSolutions = () => (
             Hire talent in countries where you don't have a legal entity. We handle payroll, taxes, and benefits.
           </p>
         </div>
-        <div className="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-primary hover:text-white transition-all duration-300 group">
+        <div className="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-primary hover:text-white transition-all duration-300 group cursor-pointer">
           <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm">
             <Briefcase className="w-8 h-8 text-primary" />
           </div>
@@ -36,7 +36,7 @@ const TalentSolutions = () => (
             Compliant contracts and payments for your international freelancers and contractors.
           </p>
         </div>
-        <div className="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-primary hover:text-white transition-all duration-300 group">
+        <div className="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-primary hover:text-white transition-all duration-300 group cursor-pointer">
           <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm">
             <Users className="w-8 h-8 text-primary" />
           </div>
