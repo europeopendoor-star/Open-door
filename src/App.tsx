@@ -11,6 +11,7 @@ import VisaGuide from './VisaGuide';
 import SuccessStories from './SuccessStories';
 import PostJob from './PostJob';
 import TalentSolutions from './TalentSolutions';
+import ApplyModal from './components/ApplyModal';
 import Pricing from './Pricing';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
@@ -780,6 +781,8 @@ const getJobIcon = (title: string) => {
 };
 
 const FindJobs = () => {
+  const [selectedJob, setSelectedJob] = useState<any | null>(null);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [locationTerm, setLocationTerm] = useState("");
   const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
@@ -961,7 +964,7 @@ const FindJobs = () => {
                         ))}
                       </div>
                     </div>
-                    <button className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
+                    <button onClick={() => { setSelectedJob(job); setIsApplyModalOpen(true); }} className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
                       Apply
                     </button>
                   </div>
@@ -980,6 +983,7 @@ const FindJobs = () => {
           </div>
         </div>
       </section>
+      <ApplyModal job={selectedJob} isOpen={isApplyModalOpen} onClose={() => setIsApplyModalOpen(false)} />
     </div>
   );
 };
