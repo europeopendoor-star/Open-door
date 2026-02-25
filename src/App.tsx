@@ -101,10 +101,10 @@ const Navbar = () => {
         <div className="flex items-center gap-4 md:gap-8">
           <Link className="font-display text-xl md:text-2xl text-white tracking-wide" to="/">OpenDoor</Link>
           <div className="hidden md:flex gap-8 text-sm font-medium text-white/90 items-center">
+            <Link className="hover:text-white transition-colors" to="/jobs">Find Jobs</Link>
             <NavDropdown
               title="Candidates"
               items={[
-                { label: "Find Jobs", href: "/jobs" },
                 { label: "Relocation", href: "/relocation" },
                 { label: "Visa Guide", href: "/visa-guide" },
                 { label: "Success Stories", href: "/success-stories" }
@@ -115,10 +115,10 @@ const Navbar = () => {
               items={[
                 { label: "Post a Job", href: "/post-job" },
                 { label: "Talent Solutions", href: "/talent-solutions" },
-                { label: "Pricing", href: "/pricing" },
-                { label: "Blog", href: "/blog" }
+                { label: "Pricing", href: "/pricing" }
               ]}
             />
+            <Link className="hover:text-white transition-colors" to="/blog">Blog</Link>
             <Link className="hover:text-white transition-colors" to="/about">About Us</Link>
           </div>
         </div>
@@ -144,6 +144,8 @@ const Navbar = () => {
             className="absolute top-full left-0 w-full bg-primary/95 backdrop-blur-md border-b border-white/10 py-6 px-6 flex flex-col gap-6 md:hidden shadow-2xl overflow-y-auto max-h-[80vh]"
           >
             <div className="flex flex-col gap-2">
+              <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/jobs" onClick={() => setIsMenuOpen(false)}>Find Jobs</Link>
+
               {/* Candidates Section */}
               <div className="border-b border-white/10 pb-2">
                 <button
@@ -161,7 +163,6 @@ const Navbar = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden pl-4 flex flex-col gap-3 pb-2"
                     >
-                      <Link className="text-white/80 text-base hover:text-white" to="/jobs" onClick={() => setIsMenuOpen(false)}>Find Jobs</Link>
                       <Link className="text-white/80 text-base hover:text-white" to="/relocation" onClick={() => setIsMenuOpen(false)}>Relocation</Link>
                       <Link className="text-white/80 text-base hover:text-white" to="/visa-guide" onClick={() => setIsMenuOpen(false)}>Visa Guide</Link>
                       <Link className="text-white/80 text-base hover:text-white" to="/success-stories" onClick={() => setIsMenuOpen(false)}>Success Stories</Link>
@@ -190,12 +191,12 @@ const Navbar = () => {
                       <Link className="text-white/80 text-base hover:text-white" to="/post-job" onClick={() => setIsMenuOpen(false)}>Post a Job</Link>
                       <Link className="text-white/80 text-base hover:text-white" to="/talent-solutions" onClick={() => setIsMenuOpen(false)}>Talent Solutions</Link>
                       <Link className="text-white/80 text-base hover:text-white" to="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
-                      <Link className="text-white/80 text-base hover:text-white" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
+              <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
             </div>
 
