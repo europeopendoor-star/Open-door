@@ -26,6 +26,7 @@ import {
   Globe,
   Mail,
   Phone,
+  MessageSquare,
   Menu,
   ChevronDown,
   X,
@@ -504,8 +505,11 @@ const Footer = () => (
             <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">
               <Mail className="w-4 h-4" />
             </a>
-            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">
+            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="tel:+4915210755401">
               <Phone className="w-4 h-4" />
+            </a>
+            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors" href="https://wa.me/4915210755401" target="_blank" rel="noopener noreferrer">
+              <MessageSquare className="w-4 h-4" />
             </a>
           </div>
         </div>
