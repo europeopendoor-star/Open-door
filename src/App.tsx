@@ -965,9 +965,13 @@ const FindJobs = () => {
                         ))}
                       </div>
                     </div>
-                    <button className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
+                    <a
+                      href={`https://wa.me/4915210755401?text=Hi,%20I'm%20interested%20in%20applying%20for%20the%20${encodeURIComponent(job.title)}%20position.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors text-center inline-block">
                       Apply
-                    </button>
+                    </a>
                   </div>
                 ))
               ) : (
