@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PageHeader from './components/PageHeader';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -49,7 +49,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1">Email</h3>
-                  <p className="text-gray-600">europeopendoor@gmail.com</p>
+                  <p className="text-gray-600"><a href="mailto:europeopendoor@gmail.com" className="hover:text-primary transition-colors">europeopendoor@gmail.com</a></p>
                   <p className="text-sm text-gray-400 mt-1">We aim to reply within 24 hours.</p>
                 </div>
               </div>
@@ -60,8 +60,23 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1">Phone</h3>
-                  <p className="text-gray-600">+49 152 1075 5401</p>
+                  <p className="text-gray-600">
+                    <a href="tel:+4915210755401" className="hover:text-primary transition-colors">+49 152 1075 5401</a>
+                  </p>
                   <p className="text-sm text-gray-400 mt-1">Mon-Fri from 9am to 6pm CET.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-6">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 text-green-600">
+                  <MessageSquare className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">WhatsApp</h3>
+                  <p className="text-gray-600">
+                    <a href="https://wa.me/4915210755401" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">+49 152 1075 5401</a>
+                  </p>
+                  <p className="text-sm text-gray-400 mt-1">Chat with us directly on WhatsApp.</p>
                 </div>
               </div>
 
