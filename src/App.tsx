@@ -343,7 +343,7 @@ const Values = () => (
 );
 
 const JobCards = () => (
-  <section className="pt-8 pb-16 px-6 max-w-7xl mx-auto mb-24">
+  <section className="pt-8 pb-8 px-6 max-w-7xl mx-auto mb-8">
     <div className="flex flex-col md:flex-row justify-between items-start mb-12">
       <div className="max-w-2xl">
         <h2 className="font-display text-5xl md:text-6xl text-primary mb-6">Featured Opportunities</h2>
@@ -540,7 +540,7 @@ const Partners = () => (
 );
 
 const CityExplorer = () => (
-  <section className="py-24 px-6 max-w-7xl mx-auto mb-24">
+  <section className="pt-8 pb-24 px-6 max-w-7xl mx-auto mb-24">
     <div className="flex flex-col md:flex-row justify-between items-end mb-16">
       <div className="max-w-xl">
         <h2 className="font-display text-5xl md:text-6xl text-primary mb-6">Explore Destinations</h2>
@@ -638,7 +638,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-24 px-6 max-w-7xl mx-auto mb-24">
+    <section className="pt-8 pb-24 px-6 max-w-7xl mx-auto mb-24">
       <div className="bg-accent-lime rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-10 left-10 w-64 h-64 border-4 border-primary rounded-full"></div>
