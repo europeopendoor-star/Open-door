@@ -1,5 +1,5 @@
 import React from 'react';
-import { TestimonialsColumn } from "@/src/components/ui/testimonials-columns-1";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { motion } from "motion/react";
 
 const testimonials = [
