@@ -1,18 +1,19 @@
 --- src/App.tsx
 +++ src/App.tsx
-@@ -965,9 +965,11 @@
-                         ))}
-                       </div>
-                     </div>
--                    <button className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
-+                    <a
-+                      href={`https://wa.me/4915210755401?text=Hi,%20I'm%20interested%20in%20applying%20for%20the%20${encodeURIComponent(job.title)}%20position%20at%20${encodeURIComponent(job.company)}.`}
-+                      target="_blank"
-+                      rel="noopener noreferrer"
-+                      className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors text-center inline-block">
-                       Apply
--                    </button>
-+                    </a>
-                   </div>
-                 ))
-               ) : (
+@@ -21,6 +21,7 @@
+ import Blog from './Blog';
+ import BlogPost from './BlogPost';
+ import Contact from './Contact';
++import TestimonialsComponent from './components/Testimonials';
+ import {
+   Search,
+   Briefcase,
+@@ -707,7 +708,7 @@
+     <HowItWorks />
+     <Locations />
+     <Categories />
+-    <Testimonials />
++    <TestimonialsComponent />
+     <FAQ />
+   </main>
+ );
