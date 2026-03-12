@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PageHeader from './components/PageHeader';
 import { Link } from 'react-router-dom';
 import { FileText, Search } from 'lucide-react';
@@ -8,12 +8,13 @@ const Blog = () => {
   const [selectedCountry, setSelectedCountry] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredPosts = blogPosts.filter(post => {
+  // ⚡ Bolt: Memoize the filtered posts to prevent O(N) recalculations on every render
+  const filteredPosts = useMemo(() => blogPosts.filter(post => {
     const matchesCountry = selectedCountry === 'All' || post.country === selectedCountry;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           post.metaDescription.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCountry && matchesSearch;
-  });
+  }), [selectedCountry, searchQuery]);
 
   const countries = ['All', 'Uganda', 'Kenya', 'Tanzania', 'South Sudan', 'Rwanda'];
 
