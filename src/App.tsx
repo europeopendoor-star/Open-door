@@ -126,7 +126,6 @@ const Navbar = () => {
             />
             <Link className="hover:text-white transition-colors" to="/blog">Blog</Link>
             <Link className="hover:text-white transition-colors" to="/about">About Us</Link>
-            <Link className="hover:text-white transition-colors" to="/contact">Contact</Link>
           </div>
         </div>
         <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-white">
@@ -205,7 +204,6 @@ const Navbar = () => {
 
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-              <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
             </div>
 
             <div className="flex flex-col gap-4 mt-2">
