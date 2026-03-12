@@ -452,7 +452,7 @@ const Insights = () => (
           <p className="text-gray-500 text-[11px] font-bold tracking-wider mb-6 leading-relaxed max-w-2xl">
             {article.desc}
           </p>
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-0">
             {article.tags.map((tag, j) => (
               <span key={j} className={`${tag.color} px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase`}>
                 {tag.label}
@@ -529,8 +529,8 @@ const Footer = () => (
 );
 
 const Partners = () => (
-  <section className="py-12 border-b border-gray-100 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-6 mb-8">
+  <section className="py-4 border-b border-gray-100 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-6 mb-0">
       <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase text-center">Trusted by industry leaders across Europe</p>
     </div>
     <div className="w-full flex items-center justify-center">
@@ -645,7 +645,7 @@ const Newsletter = () => {
           <div className="absolute bottom-10 right-10 w-96 h-96 border-4 border-primary rounded-full"></div>
         </div>
         <div className="relative z-10 max-w-2xl mx-auto">
-          <h2 className="font-display text-5xl md:text-6xl text-primary mb-8">Stay ahead of the curve</h2>
+          <h2 className="font-display text-5xl md:text-6xl text-primary mb-0">Stay ahead of the curve</h2>
           <p className="text-primary/70 text-lg mb-12">Get weekly insights on the European job market, visa updates, and exclusive relocation guides delivered to your inbox.</p>
 
           {isSubscribed ? (
@@ -934,7 +934,7 @@ const FindJobs = () => {
           </div>
 
           <div className="flex-1">
-            <div className="mb-8">
+            <div className="mb-0">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
@@ -1026,7 +1026,7 @@ const Employers = () => (
       
       <div className="bg-gray-50 rounded-[3rem] p-12 text-center">
         <h2 className="font-display text-4xl mb-6">Ready to expand your team?</h2>
-        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">Join hundreds of European companies hiring top international talent through OpenDoor.</p>
+        <p className="text-gray-600 mb-0 max-w-2xl mx-auto">Join hundreds of European companies hiring top international talent through OpenDoor.</p>
         <Link to="/contact" className="bg-primary text-white px-10 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors inline-block">
           Schedule a Demo
         </Link>
@@ -1050,7 +1050,7 @@ const Relocation = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
         <div>
           <h2 className="font-display text-4xl md:text-5xl mb-6">Your journey, fully supported</h2>
-          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+          <p className="text-gray-600 text-lg mb-0 leading-relaxed">
             Moving to a new country is a massive life event. Our dedicated relocation experts are with you every step of the way, from the moment you sign your offer to your first day in your new city.
           </p>
           <ul className="space-y-4">
@@ -1105,7 +1105,7 @@ const AboutUs = () => (
       bgImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
     />
     <section className="py-24 px-6 max-w-4xl mx-auto text-center">
-      <h2 className="font-display text-4xl md:text-5xl mb-8">We believe talent is global, but opportunity is not.</h2>
+      <h2 className="font-display text-4xl md:text-5xl mb-0">We believe talent is global, but opportunity is not.</h2>
       <p className="text-gray-600 text-lg leading-relaxed mb-12">
         Founded in 2020, OpenDoor was born out of the frustration of navigating complex immigration systems and fragmented job markets. We set out to build a platform that not only connects brilliant minds with innovative companies but also removes the friction of international relocation.
       </p>
@@ -1154,7 +1154,7 @@ const PlaceholderPage = ({ title }: { title: string }) => (
       bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
     />
     <section className="py-24 px-6 max-w-4xl mx-auto text-center">
-      <h2 className="font-display text-4xl mb-8">We are working on this page.</h2>
+      <h2 className="font-display text-4xl mb-0">We are working on this page.</h2>
       <p className="text-gray-600 text-lg">Please check back later.</p>
     </section>
   </div>
