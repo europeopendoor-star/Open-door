@@ -15,15 +15,14 @@ import Pricing from './Pricing';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
 import Contact from './Contact';
-import TestimonialsComponent from './components/Testimonials';
 import {
-  Search, 
-  Briefcase, 
-  MapPin, 
-  PlaneTakeoff, 
-  Handshake, 
-  Home as HomeIcon, 
-  GraduationCap, 
+  Search,
+  Briefcase,
+  MapPin,
+  PlaneTakeoff,
+  Handshake,
+  Home as HomeIcon,
+  GraduationCap,
   Globe,
   Mail,
   Phone,
@@ -129,7 +128,7 @@ const Navbar = () => {
           <a className="hidden sm:block hover:text-white/70 transition-colors" href="#en" onClick={(e) => e.preventDefault()}>EN</a>
           <a className="hidden sm:block hover:text-white/70 transition-colors" href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>
           <a className="hidden md:block bg-white text-primary px-4 py-1.5 md:px-5 md:py-2 rounded-full hover:bg-gray-100 transition-colors font-semibold" href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>
-          <button 
+          <button
             className="md:hidden text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -321,7 +320,7 @@ const Values = () => (
         { icon: HomeIcon, title: "Relocation Support", desc: "Housing assistance, bank setup, and cultural onboarding to help you settle in quickly." },
         { icon: GraduationCap, title: "Career Coaching", desc: "Expert advice on CV tailoring for European standards and interview preparation." }
       ].map((item, i) => (
-        <motion.div 
+        <motion.div
           key={i}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -364,9 +363,9 @@ const JobCards = () => (
                 {job.badge}
               </span>
             )}
-            <img 
-              alt={job.title} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            <img
+              alt={job.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               src={job.img}
               referrerPolicy="no-referrer"
             />
@@ -395,7 +394,7 @@ const Insights = () => (
         REAL STORIES FROM PROFESSIONALS WHO MADE THE MOVE, PLUS GUIDES ON VISAS, TAXES, AND CULTURE.
       </p>
     </div>
-    
+
     {[
       {
         title: "From Sao Paulo to Stockholm: My First 90 Days",
@@ -427,7 +426,7 @@ const Insights = () => (
         img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
       }
     ].map((article, i) => (
-      <motion.div 
+      <motion.div
         key={i}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -436,9 +435,9 @@ const Insights = () => (
         className="group flex flex-col md:flex-row gap-10 items-center mb-20 last:mb-0"
       >
         <div className="w-full md:w-[320px] aspect-[4/3] rounded-2xl overflow-hidden flex-shrink-0">
-          <img 
-            alt={article.title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+          <img
+            alt={article.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             src={article.img}
             referrerPolicy="no-referrer"
           />
@@ -556,14 +555,14 @@ const CityExplorer = () => (
         { name: "Amsterdam", country: "Netherlands", jobs: "850+", cost: "High", img: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=800" },
         { name: "Stockholm", country: "Sweden", jobs: "620+", cost: "High", img: "https://images.unsplash.com/photo-1509339022327-1e1e25360a41?auto=format&fit=crop&q=80&w=800" }
       ].map((city, i) => (
-        <motion.div 
+        <motion.div
           key={i}
           whileHover={{ y: -10 }}
           className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer"
         >
-          <img 
-            alt={city.name} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+          <img
+            alt={city.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             src={city.img}
             referrerPolicy="no-referrer"
           />
@@ -597,7 +596,7 @@ const Testimonials = () => (
               { name: "Elena Rodriguez", role: "UX Designer at Spotify", text: "OpenDoor didn't just find me a job; they found me a new life in Stockholm. The visa support was flawless.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
               { name: "Marcus Chen", role: "Backend Engineer at Zalando", text: "Moving to Berlin seemed impossible until I connected with OpenDoor. They handled everything from interview prep to housing.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" }
             ].map((t, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -708,7 +707,7 @@ const Home = () => (
     <Values />
     <JobCards />
     <CityExplorer />
-    <TestimonialsComponent />
+    <Testimonials />
     <Insights />
     <Newsletter />
     <FAQ />
@@ -995,8 +994,8 @@ const FindJobs = () => {
 
 const Employers = () => (
   <div className="min-h-screen bg-white">
-    <PageHeader 
-      title="Hire Global Talent" 
+    <PageHeader
+      title="Hire Global Talent"
       subtitle="Access a curated pool of pre-vetted international professionals"
       bgImage="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000"
     />
@@ -1024,7 +1023,7 @@ const Employers = () => (
           <p className="text-gray-600">If a hire doesn't work out within the first 90 days, we'll find a replacement for free.</p>
         </div>
       </div>
-      
+
       <div className="bg-gray-50 rounded-[3rem] p-12 text-center">
         <h2 className="font-display text-4xl mb-6">Ready to expand your team?</h2>
         <p className="text-gray-600 mb-8 max-w-2xl mx-auto">Join hundreds of European companies hiring top international talent through OpenDoor.</p>
@@ -1038,8 +1037,8 @@ const Employers = () => (
 
 const Relocation = () => (
   <div className="min-h-screen bg-white">
-    <PageHeader 
-      title="Seamless Relocation" 
+    <PageHeader
+      title="Seamless Relocation"
       subtitle="We handle the logistics so you can focus on your new life"
       bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2000"
     />
@@ -1069,7 +1068,7 @@ const Relocation = () => (
           <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400" alt="Team" className="rounded-3xl w-full h-64 object-cover mt-8" referrerPolicy="no-referrer" />
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="bg-gray-50 p-8 rounded-3xl">
           <Map className="w-10 h-10 text-primary mb-6" />
@@ -1096,8 +1095,8 @@ const Relocation = () => (
 
 const AboutUs = () => (
   <div className="min-h-screen bg-white">
-    <PageHeader 
-      title="Our Mission" 
+    <PageHeader
+      title="Our Mission"
       subtitle="Breaking down borders to connect talent with opportunity"
       bgImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
     />
@@ -1124,7 +1123,7 @@ const AboutUs = () => (
           <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Visa Success</p>
         </div>
       </div>
-      
+
       <h3 className="font-display text-3xl mb-12">Our Leadership</h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
         {[
@@ -1145,8 +1144,8 @@ const AboutUs = () => (
 
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-screen bg-white">
-    <PageHeader 
-      title={title} 
+    <PageHeader
+      title={title}
       subtitle="Coming soon"
       bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
     />

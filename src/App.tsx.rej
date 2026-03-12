@@ -1,0 +1,11 @@
+--- App.tsx
++++ App.tsx
+@@ -708,7 +709,7 @@
+     <HowItWorks />
+     <Locations />
+     <Categories />
+-    <Testimonials />
++    <TestimonialsComponent />
+     <FAQ />
+   </main>
+ );
