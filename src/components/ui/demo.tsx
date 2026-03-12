@@ -9,25 +9,25 @@ import {
 
 const items = [
   {
-    img: "https://images.unsplash.com/photo-1709949908058-a08659bfa922?q=80&w=1170&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=1170&auto=format&fit=crop",
     title: 'Berlin, Germany',
     desc: 'A thriving tech hub with a vibrant international community, offering countless opportunities for software engineers and IT professionals.',
     sliderName: 'berlin',
   },
   {
-    img: "https://images.unsplash.com/photo-1518972734183-c5b490a7c637?q=80&w=1170&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=1170&auto=format&fit=crop",
     title: 'Stockholm, Sweden',
     desc: 'Known for its work-life balance and innovative tech scene, making it a top destination for global talent.',
     sliderName: 'stockholm',
   },
   {
-    img: "https://images.unsplash.com/photo-1548192746-dd526f154ed9?q=80&w=1170&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1517736996303-4eec4a66bb17?q=80&w=1170&auto=format&fit=crop",
     title: 'Amsterdam, Netherlands',
     desc: 'A picturesque city with a booming startup ecosystem and excellent English proficiency.',
     sliderName: 'amsterdam',
   },
   {
-    img: "https://images.unsplash.com/photo-1628965882741-570e75becd5d?q=80&w=687&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1595867818082-083862f3d630?q=80&w=1170&auto=format&fit=crop",
     title: 'Munich, Germany',
     sliderName: 'munich',
     desc: 'Home to global engineering giants and a strong economy, perfect for advancing your career.',
