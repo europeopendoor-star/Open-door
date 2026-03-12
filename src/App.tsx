@@ -1,5 +1,3 @@
-import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
-import { Badge } from "./components/ui/Badge";
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -7,7 +5,7 @@ import { Badge } from "./components/ui/Badge";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-
+import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import PageHeader from './components/PageHeader';
 import VisaGuide from './VisaGuide';
 import SuccessStories from './SuccessStories';
@@ -17,20 +15,14 @@ import Pricing from './Pricing';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
 import Contact from './Contact';
-import ProgressiveCarouselDemo from './components/ui/demo';
-import TimelineDemo from './components/ui/timeline-demo';
-import InfiniteSliderBasic from './components/ui/infinite-slider-demo';
-import HeroDemo from './components/ui/hero-demo';
-import TestimonialsComponent from './components/Testimonials';
-import { blogPosts } from './data/blogPosts';
 import {
-  Search, 
-  Briefcase, 
-  MapPin, 
-  PlaneTakeoff, 
-  Handshake, 
-  Home as HomeIcon, 
-  GraduationCap, 
+  Search,
+  Briefcase,
+  MapPin,
+  PlaneTakeoff,
+  Handshake,
+  Home as HomeIcon,
+  GraduationCap,
   Globe,
   Mail,
   Phone,
@@ -129,13 +121,14 @@ const Navbar = () => {
             />
             <Link className="hover:text-white transition-colors" to="/blog">Blog</Link>
             <Link className="hover:text-white transition-colors" to="/about">About Us</Link>
+            <Link className="hover:text-white transition-colors" to="/contact">Contact</Link>
           </div>
         </div>
         <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-white">
           <a className="hidden sm:block hover:text-white/70 transition-colors" href="#en" onClick={(e) => e.preventDefault()}>EN</a>
           <a className="hidden sm:block hover:text-white/70 transition-colors" href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>
           <a className="hidden md:block bg-white text-primary px-4 py-1.5 md:px-5 md:py-2 rounded-full hover:bg-gray-100 transition-colors font-semibold" href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>
-          <button 
+          <button
             className="md:hidden text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -207,6 +200,7 @@ const Navbar = () => {
 
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
               <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+              <Link className="text-white text-lg font-medium hover:text-white/70 transition-colors py-2 border-b border-white/10" to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
             </div>
 
             <div className="flex flex-col gap-4 mt-2">
@@ -326,7 +320,7 @@ const Values = () => (
         { icon: HomeIcon, title: "Relocation Support", desc: "Housing assistance, bank setup, and cultural onboarding to help you settle in quickly." },
         { icon: GraduationCap, title: "Career Coaching", desc: "Expert advice on CV tailoring for European standards and interview preparation." }
       ].map((item, i) => (
-        <motion.div 
+        <motion.div
           key={i}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -346,7 +340,7 @@ const Values = () => (
 );
 
 const JobCards = () => (
-  <section className="pt-8 pb-8 px-6 max-w-7xl mx-auto mb-8">
+  <section className="pt-8 pb-16 px-6 max-w-7xl mx-auto mb-24">
     <div className="flex flex-col md:flex-row justify-between items-start mb-12">
       <div className="max-w-2xl">
         <h2 className="font-display text-5xl md:text-6xl text-primary mb-6">Featured Opportunities</h2>
@@ -369,9 +363,9 @@ const JobCards = () => (
                 {job.badge}
               </span>
             )}
-            <img 
-              alt={job.title} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            <img
+              alt={job.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               src={job.img}
               referrerPolicy="no-referrer"
             />
@@ -400,9 +394,39 @@ const Insights = () => (
         REAL STORIES FROM PROFESSIONALS WHO MADE THE MOVE, PLUS GUIDES ON VISAS, TAXES, AND CULTURE.
       </p>
     </div>
-    
-    {blogPosts.slice(0, 3).map((article, i) => (
-      <motion.div 
+
+    {[
+      {
+        title: "From Sao Paulo to Stockholm: My First 90 Days",
+        desc: "NAVIGATING THE NORDIC WORK CULTURE AND FINDING \"FIKA\" MOMENTS IN A FAST-PACED TECH ENVIRONMENT.",
+        tags: [
+          { label: "CULTURE", color: "bg-accent-lime" },
+          { label: "5 MIN READ", color: "bg-gray-100" }
+        ],
+        img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800"
+      },
+      {
+        title: "Top 5 Cities with the Best Work-Life Balance",
+        desc: "ANALYZING COST OF LIVING, SALARY TO RENT RATIOS, AND AVERAGE VACATION DAYS ACROSS MAJOR EUROPEAN HUBS.",
+        tags: [
+          { label: "RESEARCH", color: "bg-accent-gold" },
+          { label: "GUIDE", color: "bg-accent-coral text-white" },
+          { label: "8 MIN READ", color: "bg-gray-100" }
+        ],
+        img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800"
+      },
+      {
+        title: "Understanding the Blue Card Visa Process",
+        desc: "STEP-BY-STEP BREAKDOWN OF REQUIREMENTS FOR HIGHLY SKILLED WORKERS LOOKING TO ENTER THE EU JOB MARKET.",
+        tags: [
+          { label: "VISA", color: "bg-blue-400 text-white" },
+          { label: "ESSENTIAL", color: "bg-accent-lime" },
+          { label: "10 MIN READ", color: "bg-gray-100" }
+        ],
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+      }
+    ].map((article, i) => (
+      <motion.div
         key={i}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -411,10 +435,10 @@ const Insights = () => (
         className="group flex flex-col md:flex-row gap-10 items-center mb-20 last:mb-0"
       >
         <div className="w-full md:w-[320px] aspect-[4/3] rounded-2xl overflow-hidden flex-shrink-0">
-          <img 
-            alt={article.title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-            src={article.image}
+          <img
+            alt={article.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            src={article.img}
             referrerPolicy="no-referrer"
           />
         </div>
@@ -423,17 +447,16 @@ const Insights = () => (
             {article.title}
           </h3>
           <p className="text-gray-500 text-[11px] font-bold tracking-wider mb-6 leading-relaxed max-w-2xl">
-            {article.metaDescription}
+            {article.desc}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
-            <span className="bg-accent-lime px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
-              {article.country}
-            </span>
-            <span className="bg-gray-100 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
-              {article.readTime}
-            </span>
+            {article.tags.map((tag, j) => (
+              <span key={j} className={`${tag.color} px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase`}>
+                {tag.label}
+              </span>
+            ))}
           </div>
-          <Link to={`/blog/${article.slug}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
+          <Link to={`/blog/post-${i}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
         </div>
       </motion.div>
     ))}
@@ -503,18 +526,24 @@ const Footer = () => (
 );
 
 const Partners = () => (
-  <section className="py-12 border-b border-gray-100 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-6 mb-8">
-      <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase text-center">Trusted by industry leaders across Europe</p>
-    </div>
-    <div className="w-full flex items-center justify-center">
-      <InfiniteSliderBasic />
+  <section className="py-12 border-b border-gray-100">
+    <div className="max-w-7xl mx-auto px-6">
+      <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase text-center mb-8">Trusted by industry leaders across Europe</p>
+      <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+        <span className="font-display text-2xl font-bold">VOLVO</span>
+        <span className="font-display text-2xl font-bold">Spotify</span>
+        <span className="font-display text-2xl font-bold">SIEMENS</span>
+        <span className="font-display text-2xl font-bold">zalando</span>
+        <span className="font-display text-2xl font-bold">Klarna.</span>
+      </div>
     </div>
   </section>
 );
 
-const CityExplorer = () => (
-  <section className="pt-8 pb-24 px-6 max-w-7xl mx-auto mb-24">
+const CityExplorer = () => {
+  const navigate = useNavigate();
+  return (
+  <section className="py-24 px-6 max-w-7xl mx-auto mb-24">
     <div className="flex flex-col md:flex-row justify-between items-end mb-16">
       <div className="max-w-xl">
         <h2 className="font-display text-5xl md:text-6xl text-primary mb-6">Explore Destinations</h2>
@@ -528,14 +557,15 @@ const CityExplorer = () => (
         { name: "Amsterdam", country: "Netherlands", jobs: "850+", cost: "High", img: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=800" },
         { name: "Stockholm", country: "Sweden", jobs: "620+", cost: "High", img: "https://images.unsplash.com/photo-1509339022327-1e1e25360a41?auto=format&fit=crop&q=80&w=800" }
       ].map((city, i) => (
-        <motion.div 
+        <motion.div
           key={i}
           whileHover={{ y: -10 }}
           className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer"
+          onClick={() => navigate('/jobs?location=' + encodeURIComponent(city.name))}
         >
-          <img 
-            alt={city.name} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+          <img
+            alt={city.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             src={city.img}
             referrerPolicy="no-referrer"
           />
@@ -556,7 +586,8 @@ const CityExplorer = () => (
       ))}
     </div>
   </section>
-);
+  );
+};
 
 const Testimonials = () => (
   <section className="py-24 bg-primary text-white overflow-hidden mb-24">
@@ -569,7 +600,7 @@ const Testimonials = () => (
               { name: "Elena Rodriguez", role: "UX Designer at Spotify", text: "OpenDoor didn't just find me a job; they found me a new life in Stockholm. The visa support was flawless.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
               { name: "Marcus Chen", role: "Backend Engineer at Zalando", text: "Moving to Berlin seemed impossible until I connected with OpenDoor. They handled everything from interview prep to housing.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" }
             ].map((t, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -612,7 +643,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="pt-8 pb-24 px-6 max-w-7xl mx-auto mb-24">
+    <section className="py-24 px-6 max-w-7xl mx-auto mb-24">
       <div className="bg-accent-lime rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-10 left-10 w-64 h-64 border-4 border-primary rounded-full"></div>
@@ -680,8 +711,7 @@ const Home = () => (
     <Values />
     <JobCards />
     <CityExplorer />
-    <TestimonialsComponent />
-    <ProgressiveCarouselDemo />
+    <Testimonials />
     <Insights />
     <Newsletter />
     <FAQ />
@@ -712,7 +742,7 @@ const JOBS = [
   { title: "Maintenance Assistant", company: "Property Fix", location: "Berlin, Germany", salary: "€32k - €38k", tags: ['Visa Sponsorship', 'Tools Provided'], image: "https://loremflickr.com/200/200/maintenance?lock=21" },
   { title: "Facility Attendant", company: "Sports Complex", location: "Madrid, Spain", salary: "€25k - €29k", tags: ['Weekend', 'Gym Access'], image: "https://loremflickr.com/200/200/facility?lock=22" },
   { title: "Public Area Attendant", company: "Shopping Mall", location: "Warsaw, Poland", salary: "PLN 40k - 50k", tags: ['Shift Work', 'Indoor'], image: "https://loremflickr.com/200/200/cleaner?lock=23" },
-  { title: "Briefcase Caretaker", company: "Residential Block", location: "Vienna, Austria", salary: "€30k - €35k", tags: ['Accommodation', 'Full-time'], image: "https://loremflickr.com/200/200/building?lock=24" },
+  { title: "Building Caretaker", company: "Residential Block", location: "Vienna, Austria", salary: "€30k - €35k", tags: ['Accommodation', 'Full-time'], image: "https://loremflickr.com/200/200/building?lock=24" },
   { title: "Pest Control Assistant", company: "NoPests", location: "Lisbon, Portugal", salary: "€26k - €31k", tags: ['Training', 'Travel'], image: "https://loremflickr.com/200/200/pestcontrol?lock=25" },
   { title: "Street Sweeper", company: "City Council", location: "Prague, Czechia", salary: "CZK 500k - 600k", tags: ['Public Sector', 'Pension'], image: "https://loremflickr.com/200/200/street?lock=26" },
   { title: "Factory Cleaner", company: "AutoPlant", location: "Stuttgart, Germany", salary: "€30k - €36k", tags: ['Night Shift', 'Bonus'], image: "https://loremflickr.com/200/200/factory?lock=27" },
@@ -966,433 +996,160 @@ const FindJobs = () => {
   );
 };
 
-const Employers = () => {
-  return (
-    <div className="min-h-screen bg-white">
-      <PageHeader
-        title="Hire Global Talent"
-        subtitle="Access a curated pool of pre-vetted international professionals"
-        bgImage="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000"
-      />
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-100">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <Badge variant="new" className="mb-4">Why OpenDoor</Badge>
-          <h2 className="font-display text-4xl md:text-5xl mb-6">Scale your team without the growing pains</h2>
-          <p className="text-gray-600 text-lg">We bridge the gap between Europe's tech shortage and Africa's emerging talent pool, handling everything from sourcing to relocation.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {[
-            {
-              icon: Users,
-              title: "Pre-vetted Candidates",
-              desc: "Every candidate passes a rigorous 4-step screening process covering technical skills, cultural fit, and English proficiency."
-            },
-            {
-              icon: FileText,
-              title: "End-to-End Visa Support",
-              desc: "Our legal experts handle the entire visa and relocation process, ensuring a smooth transition with 98% approval rates."
-            },
-            {
-              icon: CheckCircle2,
-              title: "90-Day Guarantee",
-              desc: "We stand by our placements. If a hire doesn't work out within the first 90 days, we'll find a replacement at zero cost."
-            }
-          ].map((feature, i) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              key={i}
-              className="bg-white p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:-translate-y-2 transition-transform duration-300 group"
-            >
-              <div className="w-20 h-20 bg-primary/5 text-primary rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
-                <feature.icon className="w-10 h-10" />
-              </div>
-              <h3 className="font-bold text-2xl mb-4 text-gray-900">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-100">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex-1"
-          >
-            <h2 className="font-display text-4xl md:text-5xl mb-6">Tap into a thriving tech ecosystem</h2>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              East Africa is home to some of the fastest-growing tech hubs globally. Our candidates bring diverse perspectives, strong technical foundations, and an unmatched drive to succeed in European markets.
-            </p>
-            <div className="grid grid-cols-2 gap-8">
-              <div className="border-l-4 border-accent-lime pl-4">
-                <p className="text-4xl font-display text-primary mb-2">50k+</p>
-                <p className="text-gray-500 font-bold text-sm uppercase">Active Tech Talents</p>
-              </div>
-              <div className="border-l-4 border-accent-lime pl-4">
-                <p className="text-4xl font-display text-primary mb-2">95%</p>
-                <p className="text-gray-500 font-bold text-sm uppercase">Retention Rate</p>
-              </div>
-              <div className="border-l-4 border-accent-lime pl-4">
-                <p className="text-4xl font-display text-primary mb-2">4-6</p>
-                <p className="text-gray-500 font-bold text-sm uppercase">Weeks to Hire</p>
-              </div>
-              <div className="border-l-4 border-accent-lime pl-4">
-                <p className="text-4xl font-display text-primary mb-2">GMT+3</p>
-                <p className="text-gray-500 font-bold text-sm uppercase">Timezone Alignment</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="flex-1 relative"
-          >
-             <div className="absolute inset-0 bg-primary/5 rounded-[3rem] -m-6 -z-10 transform -rotate-3"></div>
-             <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800" alt="Tech hub" className="rounded-[2.5rem] shadow-2xl object-cover h-[500px] w-full" referrerPolicy="no-referrer" />
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-24 px-6 max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-primary text-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-lime/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
-          <div className="relative z-10">
-            <h2 className="font-display text-4xl md:text-5xl mb-6">Ready to expand your team?</h2>
-            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">Join hundreds of European companies hiring top international talent through OpenDoor.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-accent-lime text-primary px-10 py-4 rounded-full font-bold hover:bg-white transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
-                Schedule a Demo
-              </Link>
-              <Link to="/post-job" className="bg-white/10 border border-white/20 text-white px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-colors backdrop-blur-sm">
-                Post a Job
-              </Link>
-            </div>
+const Employers = () => (
+  <div className="min-h-screen bg-white">
+    <PageHeader
+      title="Hire Global Talent"
+      subtitle="Access a curated pool of pre-vetted international professionals"
+      bgImage="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000"
+    />
+    <section className="py-24 px-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Users className="w-8 h-8" />
           </div>
-        </motion.div>
-      </section>
-    </div>
-  );
-};
-
-
-
-const Relocation = () => {
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
-
-  const faqs = [
-    {
-      question: "Do I have to pay for my flight to Europe?",
-      answer: "No. For roles with full relocation packages, your flight ticket and initial temporary housing are completely covered by the employer."
-    },
-    {
-      question: "Can I bring my family with me?",
-      answer: "Yes! Most European countries offer 'family reunification' or dependent visas. We will guide you through the process of bringing your spouse and children."
-    },
-    {
-      question: "How long does the visa process take?",
-      answer: "It typically takes 4 to 8 weeks depending on the destination country and the type of visa (e.g., EU Blue Card vs. standard work permit)."
-    },
-    {
-      question: "What if I don't speak the local language?",
-      answer: "All the jobs we source require English proficiency only. While learning the local language is encouraged for daily life, your working language will be English."
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-white">
-      <PageHeader
-        title="Seamless Relocation"
-        subtitle="We handle the logistics so you can focus on your new life"
-        bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2000"
-      />
-
-      {/* Timeline Section */}
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-100">
-        <div className="mb-12">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <Badge variant="new" className="mb-4">How It Works</Badge>
-            <h2 className="font-display text-4xl md:text-5xl mb-6">The Relocation Process</h2>
-            <p className="text-gray-600 text-lg">We've broken down international relocation into a predictable, stress-free science.</p>
-          </div>
-          <TimelineDemo />
+          <h3 className="font-bold text-xl mb-4">Pre-vetted Candidates</h3>
+          <p className="text-gray-600">Every candidate is screened for technical skills, cultural fit, and English proficiency.</p>
         </div>
-      </section>
-
-      {/* Support Section */}
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-100">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Badge variant="secondary" className="mb-4">Full Support</Badge>
-            <h2 className="font-display text-4xl md:text-5xl mb-6 text-gray-900">Your journey, fully supported</h2>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              Moving to a new country is a massive life event. Our dedicated relocation experts are with you every step of the way, from the moment you sign your offer to your first day in your new city.
-            </p>
-            <ul className="space-y-6">
-              {[
-                { title: "Visa Processing", desc: "Expert handling of all legal paperwork" },
-                { title: "Travel Logistics", desc: "Flights and temporary housing covered" },
-                { title: "Local Setup", desc: "Bank accounts, taxes, and registration" },
-                { title: "Cultural Onboarding", desc: "City guides and community integration" }
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-accent-lime/20 flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm text-gray-500">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <div className="grid grid-cols-2 gap-4 relative">
-            <div className="absolute inset-0 bg-primary/5 rounded-3xl -m-4 -z-10 transform rotate-3"></div>
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=400"
-              alt="Moving"
-              className="rounded-3xl w-full h-72 object-cover shadow-lg hover:scale-105 transition-transform duration-500"
-              referrerPolicy="no-referrer"
-            />
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400"
-              alt="Team"
-              className="rounded-3xl w-full h-72 object-cover mt-12 shadow-lg hover:scale-105 transition-transform duration-500"
-              referrerPolicy="no-referrer"
-            />
+        <div className="text-center">
+          <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <FileText className="w-8 h-8" />
           </div>
+          <h3 className="font-bold text-xl mb-4">Visa Support</h3>
+          <p className="text-gray-600">We handle the entire visa and relocation process, ensuring a smooth transition.</p>
         </div>
-      </section>
-
-      {/* FAQ & Resources Section */}
-      <section className="py-24 px-6 max-w-7xl mx-auto bg-gray-50/50">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <h2 className="font-display text-4xl mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm"
-                >
-                  <button
-                    onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                    className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="font-bold text-gray-900">{faq.question}</span>
-                    <span className="text-primary font-bold text-xl ml-4">
-                      {activeFaq === i ? '−' : '+'}
-                    </span>
-                  </button>
-                  <AnimatePresence>
-                    {activeFaq === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="px-6 pb-4 text-gray-600 border-t border-gray-50"
-                      >
-                        <p className="pt-4">{faq.answer}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
+        <div className="text-center">
+          <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-8 h-8" />
           </div>
-
-          <div>
-            <h2 className="font-display text-4xl mb-8">More Resources</h2>
-            <div className="space-y-6">
-              {[
-                { icon: Map, title: "City Guides", desc: "Neighborhoods, cost of living, and local amenities.", link: "/blog", linkText: "Read Guides" },
-                { icon: FileText, title: "Visa Requirements", desc: "Breakdowns of visa types and requirements.", link: "/visa-guide", linkText: "Learn More" },
-                { icon: BookOpen, title: "Expat Community", desc: "Connect with professionals who have made the move.", link: "/success-stories", linkText: "Join Network" }
-              ].map((item, i) => (
-                <div key={i} className="bg-white p-6 rounded-3xl flex items-start gap-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-md transition-shadow group">
-                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
-                    <item.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl mb-2 text-gray-900">{item.title}</h3>
-                    <p className="text-gray-600 mb-4">{item.desc}</p>
-                    <Link to={item.link} className="text-primary font-bold text-sm uppercase tracking-wider hover:underline inline-flex items-center gap-1">
-                      {item.linkText} <span className="text-lg">→</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <h3 className="font-bold text-xl mb-4">Guaranteed Match</h3>
+          <p className="text-gray-600">If a hire doesn't work out within the first 90 days, we'll find a replacement for free.</p>
         </div>
-      </section>
-    </div>
-  );
-};
+      </div>
 
+      <div className="bg-gray-50 rounded-[3rem] p-12 text-center">
+        <h2 className="font-display text-4xl mb-6">Ready to expand your team?</h2>
+        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">Join hundreds of European companies hiring top international talent through OpenDoor.</p>
+        <Link to="/contact" className="bg-primary text-white px-10 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors inline-block">
+          Schedule a Demo
+        </Link>
+      </div>
+    </section>
+  </div>
+);
 
-
-const AboutUs = () => {
-  return (
-    <div className="min-h-screen bg-white">
-      <PageHeader
-        title="Our Mission"
-        subtitle="Breaking down borders to connect talent with opportunity"
-        bgImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
-      />
-      
-      {/* Vision Section */}
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-100">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-1"
-          >
-            <Badge variant="new" className="mb-6">Our Story</Badge>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight text-gray-900">
-              We believe talent is global, but opportunity is not.
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Founded in 2020, OpenDoor was born out of the profound frustration of navigating complex, outdated immigration systems and highly fragmented job markets.
-            </p>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              We set out to build a platform that does more than just connect brilliant minds with innovative companies—we actively remove the friction of international relocation, turning a stressful months-long ordeal into a streamlined, exciting journey.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-1 relative w-full"
-          >
-             <div className="absolute inset-0 bg-primary/5 rounded-[3rem] -m-4 md:-m-8 z-0 transform rotate-3"></div>
-             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Team meeting" className="rounded-[2.5rem] relative z-10 shadow-2xl object-cover h-[500px] w-full border border-gray-100" referrerPolicy="no-referrer" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 px-6 bg-gray-50/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+const Relocation = () => (
+  <div className="min-h-screen bg-white">
+    <PageHeader
+      title="Seamless Relocation"
+      subtitle="We handle the logistics so you can focus on your new life"
+      bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2000"
+    />
+    <section className="py-24 px-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
+        <div>
+          <h2 className="font-display text-4xl md:text-5xl mb-6">Your journey, fully supported</h2>
+          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+            Moving to a new country is a massive life event. Our dedicated relocation experts are with you every step of the way, from the moment you sign your offer to your first day in your new city.
+          </p>
+          <ul className="space-y-4">
             {[
-              { number: "50+", label: "Countries Supported", icon: Globe },
-              { number: "2k+", label: "Successful Placements", icon: Users },
-              { number: "300+", label: "Hiring Partners", icon: Briefcase },
-              { number: "98%", label: "Visa Success Rate", icon: CheckCircle2 }
-            ].map((stat, i) => (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                key={i}
-                className="text-center bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-primary/20 transition-colors group"
-              >
-                <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-colors duration-300 text-primary">
-                  <stat.icon className="w-6 h-6" />
-                </div>
-                <p className="font-display text-4xl lg:text-5xl text-gray-900 mb-2">{stat.number}</p>
-                <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{stat.label}</p>
-              </motion.div>
+              "Visa application and processing",
+              "Flight booking and temporary housing",
+              "Bank account setup and tax registration",
+              "Local orientation and cultural onboarding"
+            ].map((item, i) => (
+              <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                <CheckCircle2 className="w-5 h-5 text-accent-lime" />
+                {item}
+              </li>
             ))}
+          </ul>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=400" alt="Moving" className="rounded-3xl w-full h-64 object-cover" referrerPolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400" alt="Team" className="rounded-3xl w-full h-64 object-cover mt-8" referrerPolicy="no-referrer" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="bg-gray-50 p-8 rounded-3xl">
+          <Map className="w-10 h-10 text-primary mb-6" />
+          <h3 className="font-bold text-xl mb-4">City Guides</h3>
+          <p className="text-gray-600 mb-6">Comprehensive guides to neighborhoods, cost of living, and local amenities.</p>
+          <Link to="/blog" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</Link>
+        </div>
+        <div className="bg-gray-50 p-8 rounded-3xl">
+          <FileText className="w-10 h-10 text-primary mb-6" />
+          <h3 className="font-bold text-xl mb-4">Visa Requirements</h3>
+          <p className="text-gray-600 mb-6">Detailed breakdowns of visa types and requirements for different EU countries.</p>
+          <Link to="/visa-guide" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Learn More</Link>
+        </div>
+        <div className="bg-gray-50 p-8 rounded-3xl">
+          <BookOpen className="w-10 h-10 text-primary mb-6" />
+          <h3 className="font-bold text-xl mb-4">Expat Community</h3>
+          <p className="text-gray-600 mb-6">Connect with other professionals who have made the move through OpenDoor.</p>
+          <Link to="/success-stories" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Join Network</Link>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+const AboutUs = () => (
+  <div className="min-h-screen bg-white">
+    <PageHeader
+      title="Our Mission"
+      subtitle="Breaking down borders to connect talent with opportunity"
+      bgImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
+    />
+    <section className="py-24 px-6 max-w-4xl mx-auto text-center">
+      <h2 className="font-display text-4xl md:text-5xl mb-8">We believe talent is global, but opportunity is not.</h2>
+      <p className="text-gray-600 text-lg leading-relaxed mb-12">
+        Founded in 2020, OpenDoor was born out of the frustration of navigating complex immigration systems and fragmented job markets. We set out to build a platform that not only connects brilliant minds with innovative companies but also removes the friction of international relocation.
+      </p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-gray-100 py-12 mb-16">
+        <div>
+          <p className="font-display text-4xl text-primary mb-2">50+</p>
+          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Countries</p>
+        </div>
+        <div>
+          <p className="font-display text-4xl text-primary mb-2">2k+</p>
+          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Placements</p>
+        </div>
+        <div>
+          <p className="font-display text-4xl text-primary mb-2">300+</p>
+          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Partners</p>
+        </div>
+        <div>
+          <p className="font-display text-4xl text-primary mb-2">98%</p>
+          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Visa Success</p>
+        </div>
+      </div>
+
+      <h3 className="font-display text-3xl mb-12">Our Leadership</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {[
+          { name: "Sarah Jenkins", role: "CEO & Founder", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" },
+          { name: "David Chen", role: "Head of Operations", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" },
+          { name: "Amira Hassan", role: "VP of Partnerships", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" }
+        ].map((person, i) => (
+          <div key={i}>
+            <img src={person.img} alt={person.name} className="w-32 h-32 rounded-full object-cover mx-auto mb-4" referrerPolicy="no-referrer" />
+            <h4 className="font-bold text-lg">{person.name}</h4>
+            <p className="text-sm text-gray-500">{person.role}</p>
           </div>
-        </div>
-      </section>
-      
-      {/* Leadership Section */}
-      <section className="py-24 px-6 max-w-7xl mx-auto text-center">
-        <div className="max-w-2xl mx-auto mb-16">
-          <Badge variant="outline" className="mb-4">The Team</Badge>
-          <h3 className="font-display text-4xl md:text-5xl mb-6 text-gray-900">Our Leadership</h3>
-          <p className="text-gray-600 text-lg">Backed by decades of experience in global mobility, recruitment, and tech scaling.</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-          {[
-            { name: "Sarah Jenkins", role: "CEO & Founder", desc: "Former VP of Talent at Deliveroo. Passionate about democratizing access to global tech hubs.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" },
-            { name: "David Chen", role: "Head of Operations", desc: "Ex-Uber mobility lead. Built scaling operations across 3 continents.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" },
-            { name: "Amira Hassan", role: "VP of Partnerships", desc: "10+ years driving strategic B2B recruitment partnerships across Europe.", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" }
-          ].map((person, i) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              key={i}
-              className="group"
-            >
-              <div className="relative w-48 h-48 mx-auto mb-6">
-                <div className="absolute inset-0 bg-accent-lime rounded-full scale-0 group-hover:scale-105 transition-transform duration-500 ease-out z-0"></div>
-                <img src={person.img} alt={person.name} className="w-48 h-48 rounded-full object-cover relative z-10 border-4 border-white shadow-xl" referrerPolicy="no-referrer" />
-              </div>
-              <h4 className="font-bold text-2xl mb-2 text-gray-900">{person.name}</h4>
-              <p className="text-sm font-bold text-primary uppercase tracking-wider mb-4">{person.role}</p>
-              <p className="text-gray-600 text-sm leading-relaxed max-w-xs mx-auto">{person.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto bg-primary text-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-          <div className="relative z-10">
-            <h2 className="font-display text-4xl md:text-5xl mb-6">Join our mission</h2>
-            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">Whether you're looking to hire top international talent, or you are a professional ready for your next big move—OpenDoor is here to guide you.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
-                Contact Us
-              </Link>
-              <Link to="/jobs" className="bg-primary/50 border border-white/20 text-white px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-colors backdrop-blur-sm">
-                View Open Roles
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-
+        ))}
+      </div>
+    </section>
+  </div>
+);
 
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-screen bg-white">
-    <PageHeader 
-      title={title} 
+    <PageHeader
+      title={title}
       subtitle="Coming soon"
       bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
     />
