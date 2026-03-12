@@ -1070,12 +1070,15 @@ const Relocation = () => (
 );
 
 const AboutUs = () => (
-  <div className="min-h-screen bg-white">
-    <PageHeader 
-      title="Our Mission" 
-      subtitle="Breaking down borders to connect talent with opportunity"
-      bgImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
-    />
+  <div className="min-h-screen bg-white pt-20">
+    <HeroDemo />
+    <section className="py-12 border-b border-gray-100 bg-gray-50/50">
+      <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
+        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Trusted By Leading Companies</h3>
+      </div>
+      <InfiniteSliderBasic />
+    </section>
+
     <section className="py-24 px-6 max-w-4xl mx-auto text-center">
       <h2 className="font-display text-4xl md:text-5xl mb-8">We believe talent is global, but opportunity is not.</h2>
       <p className="text-gray-600 text-lg leading-relaxed mb-12">
