@@ -1,4 +1,9 @@
-import PageHeader from './components/PageHeader';
+import re
+
+with open('src/SuccessStories.tsx', 'r') as f:
+    content = f.read()
+
+replacement = """import PageHeader from './components/PageHeader';
 import { InfiniteMovingCards } from './components/ui/infinite-moving-cards';
 import { motion } from 'framer-motion';
 import { Quote, TrendingUp, Users, MapPin } from 'lucide-react';
@@ -124,4 +129,7 @@ const SuccessStories = () => (
   </div>
 );
 
-export default SuccessStories;
+export default SuccessStories;"""
+
+with open('src/SuccessStories.tsx', 'w') as f:
+    f.write(replacement)
