@@ -1,23 +1,23 @@
 import re
 
-with open('src/App.tsx', 'r') as f:
+with open("src/App.tsx", "r") as f:
     content = f.read()
 
-old_button = r'''                    <button className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors">
-                      Apply
-                    </button>'''
+# Replace <a className="hidden sm:block hover:text-white/70 transition-colors" href="#">EN</a>
+content = content.replace('href="#">EN</a>', 'href="#en" onClick={(e) => e.preventDefault()}>EN</a>')
+content = content.replace('href="#">SEARCH</a>', 'href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>')
+content = content.replace('href="#">LOG IN</a>', 'href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>')
 
-new_button = r'''                    <a
-                      href={`https://wa.me/4915210755401?text=Hi,%20I'm%20interested%20in%20applying%20for%20the%20${encodeURIComponent(job.title)}%20position.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto border-2 border-primary text-primary px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors text-center inline-block">
-                      Apply
-                    </a>'''
+# Footer links
+content = content.replace('href="#">Privacy Policy</a>', 'href="#privacy" onClick={(e) => e.preventDefault()}>Privacy Policy</a>')
+content = content.replace('href="#">Terms of Service</a>', 'href="#terms" onClick={(e) => e.preventDefault()}>Terms of Service</a>')
 
-new_content = content.replace(old_button, new_button)
+# Social links in Footer
+content = content.replace('<a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">\n              <Globe className="w-4 h-4" />\n            </a>',
+                          '<a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="/" aria-label="Website">\n              <Globe className="w-4 h-4" />\n            </a>')
+content = content.replace('<a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">\n              <Mail className="w-4 h-4" />\n            </a>',
+                          '<a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="mailto:europeopendoor@gmail.com" aria-label="Email">\n              <Mail className="w-4 h-4" />\n            </a>')
 
-with open('src/App.tsx', 'w') as f:
-    f.write(new_content)
+with open("src/App.tsx", "w") as f:
+    f.write(content)
 
-print("Updated Apply button" if old_button in content else "Apply button not found")

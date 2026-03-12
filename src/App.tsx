@@ -125,9 +125,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-white">
-          <a className="hidden sm:block hover:text-white/70 transition-colors" href="#">EN</a>
-          <a className="hidden sm:block hover:text-white/70 transition-colors" href="#">SEARCH</a>
-          <a className="hidden md:block bg-white text-primary px-4 py-1.5 md:px-5 md:py-2 rounded-full hover:bg-gray-100 transition-colors font-semibold" href="#">LOG IN</a>
+          <a className="hidden sm:block hover:text-white/70 transition-colors" href="#en" onClick={(e) => e.preventDefault()}>EN</a>
+          <a className="hidden sm:block hover:text-white/70 transition-colors" href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>
+          <a className="hidden md:block bg-white text-primary px-4 py-1.5 md:px-5 md:py-2 rounded-full hover:bg-gray-100 transition-colors font-semibold" href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>
           <button 
             className="md:hidden text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -205,10 +205,10 @@ const Navbar = () => {
 
             <div className="flex flex-col gap-4 mt-2">
               <div className="flex gap-6">
-                <a className="text-white/70 font-medium hover:text-white transition-colors" href="#">EN</a>
-                <a className="text-white/70 font-medium hover:text-white transition-colors" href="#">SEARCH</a>
+                <a className="text-white/70 font-medium hover:text-white transition-colors" href="#en" onClick={(e) => e.preventDefault()}>EN</a>
+                <a className="text-white/70 font-medium hover:text-white transition-colors" href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>
               </div>
-              <a className="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100 transition-colors font-bold text-center mt-2" href="#">LOG IN</a>
+              <a className="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100 transition-colors font-bold text-center mt-2" href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>
             </div>
           </motion.div>
         )}
@@ -499,10 +499,10 @@ const Footer = () => (
             <li><Link className="hover:text-white transition-colors" to="/contact">Contact Form</Link></li>
           </ul>
           <div className="flex gap-4 mt-6">
-            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">
+            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="/" aria-label="Website">
               <Globe className="w-4 h-4" />
             </a>
-            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="#">
+            <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="mailto:europeopendoor@gmail.com" aria-label="Email">
               <Mail className="w-4 h-4" />
             </a>
             <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors" href="tel:+4915210755401">
@@ -517,8 +517,8 @@ const Footer = () => (
       <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
         <p>© 2024 OpenDoor Europe. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
-          <a className="hover:text-white" href="#">Privacy Policy</a>
-          <a className="hover:text-white" href="#">Terms of Service</a>
+          <a className="hover:text-white" href="#privacy" onClick={(e) => e.preventDefault()}>Privacy Policy</a>
+          <a className="hover:text-white" href="#terms" onClick={(e) => e.preventDefault()}>Terms of Service</a>
         </div>
       </div>
     </div>
