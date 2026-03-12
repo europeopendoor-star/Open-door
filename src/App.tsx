@@ -16,6 +16,9 @@ import Blog from './Blog';
 import BlogPost from './BlogPost';
 import Contact from './Contact';
 import ProgressiveCarouselDemo from './components/ui/demo';
+import TimelineDemo from './components/ui/timeline-demo';
+import InfiniteSliderBasic from './components/ui/infinite-slider-demo';
+import HeroDemo from './components/ui/hero-demo';
 import TestimonialsComponent from './components/Testimonials';
 import {
   Search, 
@@ -528,16 +531,12 @@ const Footer = () => (
 );
 
 const Partners = () => (
-  <section className="py-12 border-b border-gray-100">
-    <div className="max-w-7xl mx-auto px-6">
-      <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase text-center mb-8">Trusted by industry leaders across Europe</p>
-      <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-        <span className="font-display text-2xl font-bold">VOLVO</span>
-        <span className="font-display text-2xl font-bold">Spotify</span>
-        <span className="font-display text-2xl font-bold">SIEMENS</span>
-        <span className="font-display text-2xl font-bold">zalando</span>
-        <span className="font-display text-2xl font-bold">Klarna.</span>
-      </div>
+  <section className="py-12 border-b border-gray-100 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-6 mb-8">
+      <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase text-center">Trusted by industry leaders across Europe</p>
+    </div>
+    <div className="w-full flex items-center justify-center">
+      <InfiniteSliderBasic />
     </div>
   </section>
 );
@@ -1046,6 +1045,10 @@ const Relocation = () => (
       bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2000"
     />
     <section className="py-24 px-6 max-w-7xl mx-auto">
+      <div className="mb-24">
+        <h2 className="font-display text-4xl md:text-5xl mb-6 text-center">The Relocation Process</h2>
+        <TimelineDemo />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
         <div>
           <h2 className="font-display text-4xl md:text-5xl mb-6">Your journey, fully supported</h2>

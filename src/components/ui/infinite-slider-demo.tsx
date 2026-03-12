@@ -2,41 +2,16 @@ import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 export function InfiniteSliderBasic() {
   return (
-    <InfiniteSlider gap={24} reverse className="w-full h-full bg-white">
-      <img
-        src="https://motion-primitives.com/apple_music_logo.svg"
-        alt="Apple Music logo"
-        className="h-[120px] w-auto"
-      />
-      <img
-        src="https://motion-primitives.com/chrome_logo.svg"
-        alt="Chrome logo"
-        className="h-[120px] w-auto"
-      />
-      <img
-        src="https://motion-primitives.com/strava_logo.svg"
-        alt="Strava logo"
-        className="h-[120px] w-auto"
-      />
-      <img
-        src="https://motion-primitives.com/nintendo_logo.svg"
-        alt="Nintendo logo"
-        className="h-[120px] w-auto"
-      />
-      <img
-        src="https://motion-primitives.com/jquery_logo.svg"
-        alt="Jquery logo"
-        className="h-[120px] w-auto"
-      />
-      <img
-        src="https://motion-primitives.com/prada_logo.svg"
-        alt="Prada logo"
-        className="h-[120px] w-auto"
-      />
+    <InfiniteSlider gap={24} reverse className="w-full bg-white opacity-40 hover:opacity-100 transition-opacity duration-500">
+      <span className="font-display text-2xl font-bold px-4">VOLVO</span>
+      <span className="font-display text-2xl font-bold px-4">Spotify</span>
+      <span className="font-display text-2xl font-bold px-4">SIEMENS</span>
+      <span className="font-display text-2xl font-bold px-4">zalando</span>
+      <span className="font-display text-2xl font-bold px-4">Klarna.</span>
+      <span className="font-display text-2xl font-bold px-4">HelloFresh</span>
+      <span className="font-display text-2xl font-bold px-4">DeliveryHero</span>
     </InfiniteSlider>
   );
 }
 
-export default {
-  InfiniteSliderBasic
-};
+export default InfiniteSliderBasic;
