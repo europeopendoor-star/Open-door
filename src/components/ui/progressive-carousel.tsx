@@ -8,7 +8,7 @@ import React, {
   FC,
 } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 
 // Define the type for the context value
 interface ProgressSliderContextType {
