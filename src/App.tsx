@@ -836,7 +836,8 @@ const FindJobs = () => {
     setRelocation(false);
   };
 
-  const filteredJobs = JOBS.filter(job => {
+  // ⚡ Bolt: Memoize the filtered jobs to prevent O(N) recalculations on every render unless filter states change
+  const filteredJobs = React.useMemo(() => JOBS.filter(job => {
     // Search Term Filter
     const matchesSearch = searchTerm === "" ||
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -858,7 +859,7 @@ const FindJobs = () => {
     const matchesRelocation = !relocation || job.tags.some(t => t.toLowerCase().includes('relocation'));
 
     return matchesSearch && matchesLocationTerm && matchesRole && matchesLocationCheckbox && matchesVisa && matchesRelocation;
-  });
+  }), [searchTerm, locationTerm, selectedRoles, selectedLocations, visaSupport, relocation]);
 
   return (
     <div className="min-h-screen bg-gray-50">

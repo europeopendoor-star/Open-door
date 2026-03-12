@@ -1,2 +1,3 @@
-sed -i 's/<section className="pt-8 pb-16 px-6 max-w-7xl mx-auto mb-24">/<section className="pt-8 px-6 max-w-7xl mx-auto">/g' src/App.tsx
-sed -i 's/<section className="py-24 px-6 max-w-7xl mx-auto mb-24">/<section className="pt-8 pb-24 px-6 max-w-7xl mx-auto mb-24">/g' src/App.tsx
+#!/bin/bash
+sed -i 's/const filteredJobs = JOBS.filter(job => {/\/\/ ⚡ Bolt: Memoize the filtered jobs to prevent O(N) recalculations on every render unless filter states change\n  const filteredJobs = React.useMemo(() => JOBS.filter(job => {/g' src/App.tsx
+sed -i 's/return matchesSearch && matchesLocationTerm && matchesRole && matchesLocationCheckbox && matchesVisa && matchesRelocation;\n  });/return matchesSearch \&\& matchesLocationTerm \&\& matchesRole \&\& matchesLocationCheckbox \&\& matchesVisa \&\& matchesRelocation;\n  }), [searchTerm, locationTerm, selectedRoles, selectedLocations, visaSupport, relocation]);/g' src/App.tsx
