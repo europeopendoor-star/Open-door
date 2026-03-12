@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import re
+
+with open('src/PostJob.tsx', 'r') as f:
+    content = f.read()
+
+replacement = """import React, { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { CheckCircle2, Building2, User, Mail, Briefcase, FileText, ArrowRight, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -303,4 +308,7 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default PostJob;"""
+
+with open('src/PostJob.tsx', 'w') as f:
+    f.write(replacement)

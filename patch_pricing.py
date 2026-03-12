@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import re
+
+with open('src/Pricing.tsx', 'r') as f:
+    content = f.read()
+
+replacement = """import { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { CheckCircle2, Building, Star, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -197,8 +202,10 @@ const Pricing = () => {
   );
 };
 
+export default Pricing;"""
 
+pattern = re.compile(r'const Pricing = \(\) => \((.*?)\);', re.DOTALL)
+new_content = re.sub(pattern, replacement + "\n\n", content)
 
-
-
-export default Pricing;
+with open('src/Pricing.tsx', 'w') as f:
+    f.write(new_content)

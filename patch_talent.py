@@ -1,4 +1,9 @@
-import PageHeader from './components/PageHeader';
+import re
+
+with open('src/TalentSolutions.tsx', 'r') as f:
+    content = f.read()
+
+replacement = """import PageHeader from './components/PageHeader';
 import { Link } from 'react-router-dom';
 import { Globe, Briefcase, Users, CheckCircle2, Building, ShieldCheck, Zap, LineChart, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -183,4 +188,7 @@ const TalentSolutions = () => (
   </div>
 );
 
-export default TalentSolutions;
+export default TalentSolutions;"""
+
+with open('src/TalentSolutions.tsx', 'w') as f:
+    f.write(replacement)
