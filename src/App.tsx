@@ -15,6 +15,7 @@ import Pricing from './Pricing';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
 import Contact from './Contact';
+import ProgressiveCarouselDemo from './components/ui/demo';
 import TestimonialsComponent from './components/Testimonials';
 import {
   Search, 
@@ -709,6 +710,7 @@ const Home = () => (
     <JobCards />
     <CityExplorer />
     <TestimonialsComponent />
+    <ProgressiveCarouselDemo />
     <Insights />
     <Newsletter />
     <FAQ />
