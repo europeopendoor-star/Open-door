@@ -23,7 +23,6 @@
   letter-spacing: -0.02em;
 }
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @theme inline {
   --color-destructive-foreground: var(--destructive-foreground);
