@@ -718,6 +718,16 @@ const Home = () => (
   </>
 );
 
+const getJobRole = (title: string) => {
+  const t = title.toLowerCase();
+  if (t.includes('engineer') || t.includes('developer')) return 'Engineering';
+  if (t.includes('designer')) return 'Design';
+  if (t.includes('product')) return 'Product';
+  if (t.includes('data')) return 'Data';
+  if (t.includes('marketing')) return 'Marketing';
+  return 'Other';
+};
+
 const JOBS = [
   { title: "Senior React Engineer", company: "TechCorp GmbH", location: "Berlin, Germany", salary: "€75k - €95k", tags: ['Visa Sponsorship', 'Hybrid', 'React'], image: "https://loremflickr.com/200/200/software?lock=1" },
   { title: "Product Designer", company: "Creative Studio", location: "Amsterdam, Netherlands", salary: "€65k - €85k", tags: ['Relocation', 'On-site', 'Figma'], image: "https://loremflickr.com/200/200/design?lock=2" },
@@ -747,7 +757,7 @@ const JOBS = [
   { title: "Street Sweeper", company: "City Council", location: "Prague, Czechia", salary: "CZK 500k - 600k", tags: ['Public Sector', 'Pension'], image: "https://loremflickr.com/200/200/street?lock=26" },
   { title: "Factory Cleaner", company: "AutoPlant", location: "Stuttgart, Germany", salary: "€30k - €36k", tags: ['Night Shift', 'Bonus'], image: "https://loremflickr.com/200/200/factory?lock=27" },
   { title: "Hospital Cleaner", company: "Central Hospital", location: "Zurich, Switzerland", salary: "CHF 50k - 60k", tags: ['Healthcare', 'Sterile'], image: "https://loremflickr.com/200/200/hospital?lock=28" },
-];
+].map(job => ({ ...job, role: getJobRole(job.title) }));
 
 
 const getJobIcon = (title: string) => {
@@ -837,16 +847,7 @@ const FindJobs = () => {
       job.location.toLowerCase().includes(locationTerm.toLowerCase());
 
     // Role Filter
-    const jobRole = (() => {
-      const t = job.title.toLowerCase();
-      if (t.includes('engineer') || t.includes('developer')) return 'Engineering';
-      if (t.includes('designer')) return 'Design';
-      if (t.includes('product')) return 'Product';
-      if (t.includes('data')) return 'Data';
-      if (t.includes('marketing')) return 'Marketing';
-      return 'Other';
-    })();
-    const matchesRole = selectedRoles.length === 0 || selectedRoles.includes(jobRole);
+    const matchesRole = selectedRoles.length === 0 || selectedRoles.includes(job.role);
 
     // Location Checkbox Filter
     const matchesLocationCheckbox = selectedLocations.length === 0 ||
