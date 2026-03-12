@@ -20,6 +20,7 @@ import TimelineDemo from './components/ui/timeline-demo';
 import InfiniteSliderBasic from './components/ui/infinite-slider-demo';
 import HeroDemo from './components/ui/hero-demo';
 import TestimonialsComponent from './components/Testimonials';
+import { blogPosts } from './data/blogPosts';
 import {
   Search, 
   Briefcase, 
@@ -398,37 +399,7 @@ const Insights = () => (
       </p>
     </div>
     
-    {[
-      {
-        title: "From Sao Paulo to Stockholm: My First 90 Days",
-        desc: "NAVIGATING THE NORDIC WORK CULTURE AND FINDING \"FIKA\" MOMENTS IN A FAST-PACED TECH ENVIRONMENT.",
-        tags: [
-          { label: "CULTURE", color: "bg-accent-lime" },
-          { label: "5 MIN READ", color: "bg-gray-100" }
-        ],
-        img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800"
-      },
-      {
-        title: "Top 5 Cities with the Best Work-Life Balance",
-        desc: "ANALYZING COST OF LIVING, SALARY TO RENT RATIOS, AND AVERAGE VACATION DAYS ACROSS MAJOR EUROPEAN HUBS.",
-        tags: [
-          { label: "RESEARCH", color: "bg-accent-gold" },
-          { label: "GUIDE", color: "bg-accent-coral text-white" },
-          { label: "8 MIN READ", color: "bg-gray-100" }
-        ],
-        img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800"
-      },
-      {
-        title: "Understanding the Blue Card Visa Process",
-        desc: "STEP-BY-STEP BREAKDOWN OF REQUIREMENTS FOR HIGHLY SKILLED WORKERS LOOKING TO ENTER THE EU JOB MARKET.",
-        tags: [
-          { label: "VISA", color: "bg-blue-400 text-white" },
-          { label: "ESSENTIAL", color: "bg-accent-lime" },
-          { label: "10 MIN READ", color: "bg-gray-100" }
-        ],
-        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
-      }
-    ].map((article, i) => (
+    {blogPosts.slice(0, 3).map((article, i) => (
       <motion.div 
         key={i}
         initial={{ opacity: 0, y: 20 }}
@@ -441,7 +412,7 @@ const Insights = () => (
           <img 
             alt={article.title} 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-            src={article.img}
+            src={article.image}
             referrerPolicy="no-referrer"
           />
         </div>
@@ -450,16 +421,17 @@ const Insights = () => (
             {article.title}
           </h3>
           <p className="text-gray-500 text-[11px] font-bold tracking-wider mb-6 leading-relaxed max-w-2xl">
-            {article.desc}
+            {article.metaDescription}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
-            {article.tags.map((tag, j) => (
-              <span key={j} className={`${tag.color} px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase`}>
-                {tag.label}
-              </span>
-            ))}
+            <span className="bg-accent-lime px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
+              {article.country}
+            </span>
+            <span className="bg-gray-100 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
+              {article.readTime}
+            </span>
           </div>
-          <Link to={`/blog/post-${i}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
+          <Link to={`/blog/${article.slug}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
         </div>
       </motion.div>
     ))}
