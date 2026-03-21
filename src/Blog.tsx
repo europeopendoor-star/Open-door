@@ -3,8 +3,12 @@ import PageHeader from './components/PageHeader';
 import { Link } from 'react-router-dom';
 import { FileText, Search } from 'lucide-react';
 import { blogPosts } from './data/blogPosts';
-
+import { useSEO } from './hooks/useSEO';
 const Blog = () => {
+  useSEO({
+    title: "Blog & Insights | OpenDoor Tech Careers",
+    description: "Read our latest articles, guides, and tools regarding international tech careers, visa processes, remote work, and relocation to Europe."
+  });
   const [selectedCountry, setSelectedCountry] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 

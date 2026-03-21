@@ -3,8 +3,12 @@ import PageHeader from './components/PageHeader';
 import { CheckCircle2, Building, Star, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { useSEO } from './hooks/useSEO';
 const Pricing = () => {
+  useSEO({
+    title: "Employer Pricing | Transparent Hiring Packages",
+    description: "Review simple, transparent pricing packages for hiring international tech talent. We offer standard hiring, volume discounts, and guaranteed placements."
+  });
   const [isAnnual, setIsAnnual] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 

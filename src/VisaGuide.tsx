@@ -3,8 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PageHeader from './components/PageHeader';
 import { Shield, FileCheck, Info, CheckCircle2, FileText, Globe, Plane, Users, CheckSquare } from 'lucide-react';
 import { Badge } from './components/ui/Badge';
-
+import { useSEO } from './hooks/useSEO';
 const VisaGuide = () => {
+  useSEO({
+    title: "EU Visa & Immigration Guide | OpenDoor",
+    description: "Explore common visa pathways like the EU Blue Card, Tech Visa, and Digital Nomad Visa with OpenDoor's comprehensive tech relocation guide."
+  });
   const [activeTab, setActiveTab] = useState(0);
 
   const visaTypes = [

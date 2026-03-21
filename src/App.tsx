@@ -21,6 +21,7 @@ import Relocation from './pages/Relocation';
 import AboutUs from './pages/AboutUs';
 import FoundersCircle from './components/v2/FoundersCircle';
 import { blogPosts } from './data/blogPosts';
+import { useSEO } from './hooks/useSEO';
 import {
   Search,
   Briefcase,
@@ -660,21 +661,28 @@ const FAQ = () => (
   </section>
 );
 
-const Home = () => (
-  <>
-    <Hero />
-    <Partners />
-    <Values />
-    <CombinedFeaturedSection />
-    <FoundersCircle />
-    <JobCards />
-    <CityExplorer />
-    <Testimonials />
-    <Insights />
-    <Newsletter />
-    <FAQ />
-  </>
-);
+const Home = () => {
+  useSEO({
+    title: "OpenDoor - Unlock Your Career in Europe",
+    description: "Connect with top European employers, explore visa sponsorship opportunities, and seamlessly relocate with OpenDoor."
+  });
+  
+  return (
+    <>
+      <Hero />
+      <Partners />
+      <Values />
+      <CombinedFeaturedSection />
+      <FoundersCircle />
+      <JobCards />
+      <CityExplorer />
+      <Testimonials />
+      <Insights />
+      <Newsletter />
+      <FAQ />
+    </>
+  );
+};
 
 const getJobRole = (title: string) => {
   const t = title.toLowerCase();
@@ -756,6 +764,10 @@ const getJobIcon = (title: string) => {
 };
 
 const FindJobs = () => {
+  useSEO({
+    title: "Find Tech Jobs in Europe | OpenDoor",
+    description: "Search curated job opportunities across Europe with visa sponsorship. Find your next role in engineering, design, or product."
+  });
   const [searchTerm, setSearchTerm] = useState("");
   const [locationTerm, setLocationTerm] = useState("");
   const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
@@ -956,8 +968,14 @@ const FindJobs = () => {
   );
 };
 
-const Employers = () => (
-  <div className="min-h-screen bg-white">
+const Employers = () => {
+  useSEO({
+    title: "Hire Global Talent | OpenDoor Employers",
+    description: "Access a curated pool of pre-vetted international professionals. We handle visa support and guaranteed matching."
+  });
+
+  return (
+    <div className="min-h-screen bg-white">
     <PageHeader
       title="Hire Global Talent"
       subtitle="Access a curated pool of pre-vetted international professionals"
@@ -997,7 +1015,8 @@ const Employers = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 // Content moved to src/pages/AboutUs.tsx and src/pages/Relocation.tsx
 

@@ -1,8 +1,14 @@
 import PageHeader from '../components/PageHeader';
 import WorldMapDemo from '../components/WorldMapDemo';
 import { Timeline } from '../components/ui/timeline';
+import { useSEO } from '../hooks/useSEO';
+const AboutUs = () => {
+  useSEO({
+    title: "About OpenDoor | Our Mission & Leadership",
+    description: "Learn about OpenDoor's mission, leadership, and our journey in breaking down borders to connect international talent with European opportunities."
+  });
 
-const AboutUs = () => (
+  return (
   <div className="min-h-screen bg-white">
     <PageHeader
       title="Our Mission"
@@ -166,6 +172,7 @@ const AboutUs = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 export default AboutUs;

@@ -2,10 +2,15 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import PageHeader from './components/PageHeader';
 import { blogPosts } from './data/blogPosts';
 import { ArrowLeft, Calendar, Clock, Globe, BarChart2, Tag, Search } from 'lucide-react';
-
+import { useSEO } from './hooks/useSEO';
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((p) => p.slug === slug);
+
+  useSEO({
+    title: post ? `${post.title} | OpenDoor Blog` : "Blog Post Not Found | OpenDoor",
+    description: post ? post.metaDescription : "The requested blog post could not be found."
+  });
 
   if (!post) {
     return <Navigate to="/blog" replace />;

@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom';
 import { Globe, Briefcase, Users, CheckCircle2, Building, ShieldCheck, Zap, LineChart, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from './components/ui/Badge';
+import { useSEO } from './hooks/useSEO';
+const TalentSolutions = () => {
+  useSEO({
+    title: "Enterprise Talent Solutions | Global Hiring & EOR",
+    description: "Scale your engineering team globally with OpenDoor's Employer of Record (EOR), automated payroll, and remote hub services."
+  });
 
-const TalentSolutions = () => (
+  return (
   <div className="min-h-screen bg-white">
     <PageHeader
       title="Talent Solutions"
@@ -181,6 +187,7 @@ const TalentSolutions = () => (
       </motion.div>
     </section>
   </div>
-);
+  );
+};
 
 export default TalentSolutions;

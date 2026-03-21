@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
-
+import { useSEO } from './hooks/useSEO';
 const Contact = () => {
+  useSEO({
+    title: "Contact OpenDoor | Get in Touch",
+    description: "Have questions about our recruitment, relocation, or visa services? Contact OpenDoor via email, phone, or WhatsApp."
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',

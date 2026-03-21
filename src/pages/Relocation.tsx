@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 import CombinedFeaturedSection from "../components/ui/combined-featured-section";
 import MoveLogicCalculator from '../components/v2/MoveLogicCalculator';
 import RelocationPulse from '../components/v2/RelocationPulse';
+import { useSEO } from '../hooks/useSEO';
+const Relocation = () => {
+  useSEO({
+    title: "Seamless Relocation | Visa & Logistics Support",
+    description: "We handle the logistics of moving to Europe, from visa processing to finding a home, so you can focus on your new life and career."
+  });
 
-const Relocation = () => (
+  return (
   <div className="min-h-screen bg-white">
     <PageHeader
       title="Seamless Relocation"
@@ -72,6 +78,7 @@ const Relocation = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 export default Relocation;
