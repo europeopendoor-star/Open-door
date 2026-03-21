@@ -19,7 +19,6 @@ import BlogPost from './BlogPost';
 import Contact from './Contact';
 import Relocation from './pages/Relocation';
 import AboutUs from './pages/AboutUs';
-import EmployerDashboard from './pages/EmployerDashboard';
 import FoundersCircle from './components/v2/FoundersCircle';
 import { blogPosts } from './data/blogPosts';
 import {
@@ -126,8 +125,7 @@ const Navbar = () => {
               items={[
                 { label: "Post a Job", href: "/post-job" },
                 { label: "Talent Solutions", href: "/talent-solutions" },
-                { label: "Pricing", href: "/pricing" },
-                { label: "Employer Dashboard", href: "/employer-dashboard" }
+                { label: "Pricing", href: "/pricing" }
               ]}
             />
             <Link className="hover:text-white transition-colors" to="/blog">Blog</Link>
@@ -138,7 +136,6 @@ const Navbar = () => {
         <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-white">
           <a className="hidden sm:block hover:text-white/70 transition-colors" href="#en" onClick={(e) => e.preventDefault()}>EN</a>
           <a className="hidden sm:block hover:text-white/70 transition-colors" href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>
-          <a className="hidden md:block bg-white text-primary px-4 py-1.5 md:px-5 md:py-2 rounded-full hover:bg-gray-100 transition-colors font-semibold" href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>
           <button
             className="md:hidden text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -219,7 +216,6 @@ const Navbar = () => {
                 <a className="text-white/70 font-medium hover:text-white transition-colors" href="#en" onClick={(e) => e.preventDefault()}>EN</a>
                 <a className="text-white/70 font-medium hover:text-white transition-colors" href="#search" onClick={(e) => e.preventDefault()}>SEARCH</a>
               </div>
-              <a className="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100 transition-colors font-bold text-center mt-2" href="#login" onClick={(e) => e.preventDefault()}>LOG IN</a>
             </div>
           </motion.div>
         )}
@@ -1039,7 +1035,6 @@ export default function App() {
         <Route path="/jobs" element={<FindJobs />} />
         <Route path="/employers" element={<Employers />} />
         <Route path="/relocation" element={<Relocation />} />
-        <Route path="/employer-dashboard" element={<EmployerDashboard />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/visa-guide" element={<VisaGuide />} />
         <Route path="/success-stories" element={<SuccessStories />} />
