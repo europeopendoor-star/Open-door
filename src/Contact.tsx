@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './components/WhatsAppIcon';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const Contact = () => {
       <PageHeader
         title="Contact Us"
         subtitle="We'd love to hear from you"
-        bgImage="https://images.unsplash.com/photo-1423666639041-f142fcb93370?auto=format&fit=crop&q=80&w=2000"
+        bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
       />
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -69,7 +70,7 @@ const Contact = () => {
 
               <div className="flex items-start gap-6">
                 <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 text-green-600">
-                  <MessageSquare className="w-6 h-6" />
+                  <WhatsAppIcon className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1">WhatsApp</h3>

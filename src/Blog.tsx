@@ -16,14 +16,14 @@ const Blog = () => {
     return matchesCountry && matchesSearch;
   }), [selectedCountry, searchQuery]);
 
-  const countries = ['All', 'Uganda', 'Kenya', 'Tanzania', 'South Sudan', 'Rwanda'];
+  const countries = ['All', 'Germany', 'United Kingdom', 'Netherlands', 'Spain', 'Sweden'];
 
   return (
     <div className="min-h-screen bg-white">
       <PageHeader
         title="Blog & Insights"
         subtitle="Guides, articles, and tools for your international career"
-        bgImage="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=2000"
+        bgImage="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=2000"
       />
       <section className="py-24 px-6 max-w-7xl mx-auto">
 

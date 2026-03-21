@@ -7,6 +7,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import PageHeader from './components/PageHeader';
+import Testimonials from './components/Testimonials';
+import WorldMapDemo from './components/WorldMapDemo';
 import VisaGuide from './VisaGuide';
 import SuccessStories from './SuccessStories';
 import PostJob from './PostJob';
@@ -15,6 +17,11 @@ import Pricing from './Pricing';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
 import Contact from './Contact';
+import Relocation from './pages/Relocation';
+import AboutUs from './pages/AboutUs';
+import EmployerDashboard from './pages/EmployerDashboard';
+import FoundersCircle from './components/v2/FoundersCircle';
+import { blogPosts } from './data/blogPosts';
 import {
   Search,
   Briefcase,
@@ -48,6 +55,9 @@ import {
   Shield,
   Send
 } from "lucide-react";
+import CombinedFeaturedSection from "./components/ui/combined-featured-section";
+import { Timeline } from "./components/ui/timeline";
+import { WhatsAppIcon } from "./components/WhatsAppIcon";
 
 const NavDropdown = ({ title, items }: { title: string, items: { label: string, href: string }[] }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -116,7 +126,8 @@ const Navbar = () => {
               items={[
                 { label: "Post a Job", href: "/post-job" },
                 { label: "Talent Solutions", href: "/talent-solutions" },
-                { label: "Pricing", href: "/pricing" }
+                { label: "Pricing", href: "/pricing" },
+                { label: "Employer Dashboard", href: "/employer-dashboard" }
               ]}
             />
             <Link className="hover:text-white transition-colors" to="/blog">Blog</Link>
@@ -228,7 +239,7 @@ const Hero = () => {
   };
 
   return (
-    <header className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+    <header className="relative min-h-[85vh] py-28 md:py-32 w-full overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         <img
           alt="European Cityscape"
@@ -245,53 +256,67 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="font-display text-4xl sm:text-5xl md:text-8xl text-white mb-6 leading-tight drop-shadow-lg"
         >
-          Unlock Your <br/>
-          <span className="italic font-light">Career in Europe</span>
+          Your Personal <br/>
+          <span className="italic font-light">Bridge to Europe</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-white/90 text-sm md:text-base tracking-widest uppercase mb-12 font-medium"
+          className="text-white/90 text-base md:text-xl tracking-wide mb-10 font-medium max-w-2xl mx-auto drop-shadow"
         >
-          Premier Recruitment for International Talent & Global Companies
+          We don't just find jobs; we build your new life abroad. Expert guidance for elite talent.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl md:rounded-full max-w-3xl mx-auto flex flex-col md:flex-row gap-2"
+          className="flex flex-col gap-4 max-w-4xl mx-auto"
         >
-          <div className="flex-1 relative group">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Briefcase className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl md:rounded-full flex flex-col md:flex-row gap-2">
+            <div className="flex-1 relative group">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Briefcase className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+              </div>
+              <input
+                className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none"
+                placeholder="Job title or keywords"
+                type="text"
+                value={jobTitle}
+                onChange={(e) => setJobTitle(e.target.value)}
+              />
             </div>
-            <input
-              className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none"
-              placeholder="Job title or keywords"
-              type="text"
-              value={jobTitle}
-              onChange={(e) => setJobTitle(e.target.value)}
-            />
-          </div>
-          <div className="w-px bg-white/20 hidden md:block"></div>
-          <div className="flex-1 relative group">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <MapPin className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+            <div className="w-px bg-white/20 hidden md:block"></div>
+            <div className="flex-1 relative group">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <MapPin className="w-5 h-5 text-white/70 group-focus-within:text-white" />
+              </div>
+              <input
+                className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none"
+                placeholder="Country or City"
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
             </div>
-            <input
-              className="w-full bg-transparent border-none text-white placeholder-white/70 focus:ring-0 pl-12 py-3 rounded-full text-sm outline-none"
-              placeholder="Country or City"
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
+            <button onClick={handleSearch} className="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg md:min-w-[140px] flex items-center justify-center gap-2">
+              <Search className="w-4 h-4" />
+              Search Jobs
+            </button>
           </div>
-          <button onClick={handleSearch} className="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg md:min-w-[140px] flex items-center justify-center gap-2">
-            <Search className="w-4 h-4" />
-            Search Jobs
-          </button>
+          
+          <div className="flex flex-wrap justify-center gap-4 mt-2">
+            <a 
+              href="https://wa.me/4915210755401" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold hover:bg-[#20BE5A] transition-all shadow-xl flex items-center gap-2 group"
+            >
+              <WhatsAppIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              WhatsApp Support
+            </a>
+          </div>
         </motion.div>
       </div>
     </header>
@@ -395,37 +420,7 @@ const Insights = () => (
       </p>
     </div>
 
-    {[
-      {
-        title: "From Sao Paulo to Stockholm: My First 90 Days",
-        desc: "NAVIGATING THE NORDIC WORK CULTURE AND FINDING \"FIKA\" MOMENTS IN A FAST-PACED TECH ENVIRONMENT.",
-        tags: [
-          { label: "CULTURE", color: "bg-accent-lime" },
-          { label: "5 MIN READ", color: "bg-gray-100" }
-        ],
-        img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800"
-      },
-      {
-        title: "Top 5 Cities with the Best Work-Life Balance",
-        desc: "ANALYZING COST OF LIVING, SALARY TO RENT RATIOS, AND AVERAGE VACATION DAYS ACROSS MAJOR EUROPEAN HUBS.",
-        tags: [
-          { label: "RESEARCH", color: "bg-accent-gold" },
-          { label: "GUIDE", color: "bg-accent-coral text-white" },
-          { label: "8 MIN READ", color: "bg-gray-100" }
-        ],
-        img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800"
-      },
-      {
-        title: "Understanding the Blue Card Visa Process",
-        desc: "STEP-BY-STEP BREAKDOWN OF REQUIREMENTS FOR HIGHLY SKILLED WORKERS LOOKING TO ENTER THE EU JOB MARKET.",
-        tags: [
-          { label: "VISA", color: "bg-blue-400 text-white" },
-          { label: "ESSENTIAL", color: "bg-accent-lime" },
-          { label: "10 MIN READ", color: "bg-gray-100" }
-        ],
-        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
-      }
-    ].map((article, i) => (
+    {blogPosts.slice(0, 3).map((article, i) => (
       <motion.div
         key={i}
         initial={{ opacity: 0, y: 20 }}
@@ -438,7 +433,7 @@ const Insights = () => (
           <img
             alt={article.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            src={article.img}
+            src={article.image}
             referrerPolicy="no-referrer"
           />
         </div>
@@ -447,16 +442,22 @@ const Insights = () => (
             {article.title}
           </h3>
           <p className="text-gray-500 text-[11px] font-bold tracking-wider mb-6 leading-relaxed max-w-2xl">
-            {article.desc}
+            {article.metaDescription.toUpperCase()}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
-            {article.tags.map((tag, j) => (
-              <span key={j} className={`${tag.color} px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase`}>
-                {tag.label}
+            <span className="bg-accent-lime px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
+              {article.country}
+            </span>
+            <span className="bg-gray-100 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
+              {article.readTime}
+            </span>
+            {article.secondaryKeywords.slice(0, 1).map((kw, j) => (
+              <span key={j} className="bg-primary/5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">
+                {kw}
               </span>
             ))}
           </div>
-          <Link to={`/blog/post-${i}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
+          <Link to={`/blog/${article.slug}`} className="text-[11px] font-bold text-primary uppercase tracking-widest border-b-2 border-primary pb-1 hover:opacity-70 transition-opacity">READ STORY</Link>
         </div>
       </motion.div>
     ))}
@@ -509,7 +510,7 @@ const Footer = () => (
               <Phone className="w-4 h-4" />
             </a>
             <a className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors" href="https://wa.me/4915210755401" target="_blank" rel="noopener noreferrer">
-              <MessageSquare className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -588,47 +589,6 @@ const CityExplorer = () => {
   </section>
   );
 };
-
-const Testimonials = () => (
-  <section className="py-24 bg-primary text-white overflow-hidden mb-24">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-        <div>
-          <h2 className="font-display text-5xl md:text-7xl mb-12 leading-tight">What our <br/> <span className="italic font-light">pioneers say</span></h2>
-          <div className="space-y-12">
-            {[
-              { name: "Elena Rodriguez", role: "UX Designer at Spotify", text: "OpenDoor didn't just find me a job; they found me a new life in Stockholm. The visa support was flawless.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
-              { name: "Marcus Chen", role: "Backend Engineer at Zalando", text: "Moving to Berlin seemed impossible until I connected with OpenDoor. They handled everything from interview prep to housing.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" }
-            ].map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex gap-6"
-              >
-                <img alt={t.name} className="w-16 h-16 rounded-full object-cover border-2 border-white/20" src={t.img} referrerPolicy="no-referrer" />
-                <div>
-                  <p className="text-lg text-white/80 italic mb-4">"{t.text}"</p>
-                  <p className="font-bold text-sm">{t.name}</p>
-                  <p className="text-xs text-white/40 uppercase tracking-widest">{t.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="relative hidden lg:block">
-          <div className="aspect-[4/5] rounded-3xl overflow-hidden rotate-3 scale-95 opacity-50 absolute -top-12 -right-12 border border-white/20">
-            <img alt="Lifestyle" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=80&w=800" referrerPolicy="no-referrer" />
-          </div>
-          <div className="aspect-[4/5] rounded-3xl overflow-hidden -rotate-3 relative z-10 border border-white/20 shadow-2xl">
-            <img alt="Lifestyle" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" referrerPolicy="no-referrer" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -709,6 +669,8 @@ const Home = () => (
     <Hero />
     <Partners />
     <Values />
+    <CombinedFeaturedSection />
+    <FoundersCircle />
     <JobCards />
     <CityExplorer />
     <Testimonials />
@@ -1041,112 +1003,7 @@ const Employers = () => (
   </div>
 );
 
-const Relocation = () => (
-  <div className="min-h-screen bg-white">
-    <PageHeader
-      title="Seamless Relocation"
-      subtitle="We handle the logistics so you can focus on your new life"
-      bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2000"
-    />
-    <section className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
-        <div>
-          <h2 className="font-display text-4xl md:text-5xl mb-6">Your journey, fully supported</h2>
-          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-            Moving to a new country is a massive life event. Our dedicated relocation experts are with you every step of the way, from the moment you sign your offer to your first day in your new city.
-          </p>
-          <ul className="space-y-4">
-            {[
-              "Visa application and processing",
-              "Flight booking and temporary housing",
-              "Bank account setup and tax registration",
-              "Local orientation and cultural onboarding"
-            ].map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
-                <CheckCircle2 className="w-5 h-5 text-accent-lime" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=400" alt="Moving" className="rounded-3xl w-full h-64 object-cover" referrerPolicy="no-referrer" />
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400" alt="Team" className="rounded-3xl w-full h-64 object-cover mt-8" referrerPolicy="no-referrer" />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="bg-gray-50 p-8 rounded-3xl">
-          <Map className="w-10 h-10 text-primary mb-6" />
-          <h3 className="font-bold text-xl mb-4">City Guides</h3>
-          <p className="text-gray-600 mb-6">Comprehensive guides to neighborhoods, cost of living, and local amenities.</p>
-          <Link to="/blog" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Read Guides</Link>
-        </div>
-        <div className="bg-gray-50 p-8 rounded-3xl">
-          <FileText className="w-10 h-10 text-primary mb-6" />
-          <h3 className="font-bold text-xl mb-4">Visa Requirements</h3>
-          <p className="text-gray-600 mb-6">Detailed breakdowns of visa types and requirements for different EU countries.</p>
-          <Link to="/visa-guide" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Learn More</Link>
-        </div>
-        <div className="bg-gray-50 p-8 rounded-3xl">
-          <BookOpen className="w-10 h-10 text-primary mb-6" />
-          <h3 className="font-bold text-xl mb-4">Expat Community</h3>
-          <p className="text-gray-600 mb-6">Connect with other professionals who have made the move through OpenDoor.</p>
-          <Link to="/success-stories" className="text-primary font-bold text-sm uppercase tracking-wider hover:opacity-70">Join Network</Link>
-        </div>
-      </div>
-    </section>
-  </div>
-);
-
-const AboutUs = () => (
-  <div className="min-h-screen bg-white">
-    <PageHeader
-      title="Our Mission"
-      subtitle="Breaking down borders to connect talent with opportunity"
-      bgImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
-    />
-    <section className="py-24 px-6 max-w-4xl mx-auto text-center">
-      <h2 className="font-display text-4xl md:text-5xl mb-8">We believe talent is global, but opportunity is not.</h2>
-      <p className="text-gray-600 text-lg leading-relaxed mb-12">
-        Founded in 2020, OpenDoor was born out of the frustration of navigating complex immigration systems and fragmented job markets. We set out to build a platform that not only connects brilliant minds with innovative companies but also removes the friction of international relocation.
-      </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-gray-100 py-12 mb-16">
-        <div>
-          <p className="font-display text-4xl text-primary mb-2">50+</p>
-          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Countries</p>
-        </div>
-        <div>
-          <p className="font-display text-4xl text-primary mb-2">2k+</p>
-          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Placements</p>
-        </div>
-        <div>
-          <p className="font-display text-4xl text-primary mb-2">300+</p>
-          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Partners</p>
-        </div>
-        <div>
-          <p className="font-display text-4xl text-primary mb-2">98%</p>
-          <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Visa Success</p>
-        </div>
-      </div>
-
-      <h3 className="font-display text-3xl mb-12">Our Leadership</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {[
-          { name: "Sarah Jenkins", role: "CEO & Founder", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" },
-          { name: "David Chen", role: "Head of Operations", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" },
-          { name: "Amira Hassan", role: "VP of Partnerships", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" }
-        ].map((person, i) => (
-          <div key={i}>
-            <img src={person.img} alt={person.name} className="w-32 h-32 rounded-full object-cover mx-auto mb-4" referrerPolicy="no-referrer" />
-            <h4 className="font-bold text-lg">{person.name}</h4>
-            <p className="text-sm text-gray-500">{person.role}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  </div>
-);
+// Content moved to src/pages/AboutUs.tsx and src/pages/Relocation.tsx
 
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-screen bg-white">
@@ -1182,6 +1039,7 @@ export default function App() {
         <Route path="/jobs" element={<FindJobs />} />
         <Route path="/employers" element={<Employers />} />
         <Route path="/relocation" element={<Relocation />} />
+        <Route path="/employer-dashboard" element={<EmployerDashboard />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/visa-guide" element={<VisaGuide />} />
         <Route path="/success-stories" element={<SuccessStories />} />

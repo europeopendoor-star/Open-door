@@ -1,4 +1,3 @@
-import React from 'react';
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { motion } from "motion/react";
 
@@ -59,9 +58,11 @@ const testimonials = [
   },
 ];
 
+
 const firstColumn = testimonials.slice(0, 3);
 const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
+
 
 const Testimonials = () => {
   return (
