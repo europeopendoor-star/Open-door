@@ -38,8 +38,8 @@ Follow these steps to set up the project locally.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/opendoor.git
-    cd opendoor
+    git clone https://github.com/europeopendoor-star/Open-door.git
+    cd Open-door
     ```
 
 2.  **Install dependencies:**
