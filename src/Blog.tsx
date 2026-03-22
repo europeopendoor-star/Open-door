@@ -1,14 +1,11 @@
+import { Helmet } from 'react-helmet-async';
 import { useState, useMemo } from 'react';
 import PageHeader from './components/PageHeader';
 import { Link } from 'react-router-dom';
 import { FileText, Search } from 'lucide-react';
 import { blogPosts } from './data/blogPosts';
-import { useSEO } from './hooks/useSEO';
 const Blog = () => {
-  useSEO({
-    title: "Blog & Insights | OpenDoor Tech Careers",
-    description: "Read our latest articles, guides, and tools regarding international tech careers, visa processes, remote work, and relocation to Europe."
-  });
+
   const [selectedCountry, setSelectedCountry] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -23,7 +20,12 @@ const Blog = () => {
   const countries = ['All', 'Germany', 'United Kingdom', 'Netherlands', 'Spain', 'Sweden'];
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>Relocation & Career Blog - OpenDoor Europe</title>
+        <meta name="description" content="Read our latest articles on working in Europe, visa guides, tech career tips, and relocation success stories." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
       <PageHeader
         title="Blog & Insights"
         subtitle="Guides, articles, and tools for your international career"
@@ -137,7 +139,8 @@ const Blog = () => {
           </div>
         </div>
       </section>
-    </div>
+    </div>    </>
+
   );
 };
 

@@ -1,8 +1,8 @@
+import { Helmet } from 'react-helmet-async';
 import PageHeader from './components/PageHeader';
 import { InfiniteMovingCards } from './components/ui/infinite-moving-cards';
 import { motion } from 'framer-motion';
 import { Quote, TrendingUp, Users, MapPin } from 'lucide-react';
-import { useSEO } from './hooks/useSEO';
 const testimonials = [
   {
     name: "Ana Silva",
@@ -49,13 +49,15 @@ const testimonials = [
 ];
 
 const SuccessStories = () => {
-  useSEO({
-    title: "Success Stories | Real Tech Relocation Journeys",
-    description: "Read real stories from tech professionals who successfully relocated to Europe with OpenDoor's visa and job matching support."
-  });
+
 
   return (
-  <div className="min-h-screen bg-white">
+  <>
+      <Helmet>
+        <title>Success Stories - OpenDoor Europe</title>
+        <meta name="description" content="Read inspiring success stories from professionals who successfully relocated to Europe." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
     <PageHeader
       title="Success Stories"
       subtitle="Real people, real journeys, real impact"
@@ -128,6 +130,7 @@ const SuccessStories = () => {
       </div>
     </section>
   </div>
+    </>
   );
 };
 

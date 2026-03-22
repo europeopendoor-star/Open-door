@@ -1,14 +1,11 @@
+import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageHeader from './components/PageHeader';
 import { Shield, FileCheck, Info, CheckCircle2, FileText, Globe, Plane, Users, CheckSquare } from 'lucide-react';
 import { Badge } from './components/ui/Badge';
-import { useSEO } from './hooks/useSEO';
 const VisaGuide = () => {
-  useSEO({
-    title: "EU Visa & Immigration Guide | OpenDoor",
-    description: "Explore common visa pathways like the EU Blue Card, Tech Visa, and Digital Nomad Visa with OpenDoor's comprehensive tech relocation guide."
-  });
+
   const [activeTab, setActiveTab] = useState(0);
 
   const visaTypes = [
@@ -75,7 +72,12 @@ const VisaGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>Visa & Relocation Guide - OpenDoor Europe</title>
+        <meta name="description" content="Comprehensive visa and relocation guide for non-EU professionals moving to Europe." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
       <PageHeader
         title="Visa & Immigration Guide"
         subtitle="Simplifying your path to working in Europe"
@@ -265,6 +267,7 @@ const VisaGuide = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

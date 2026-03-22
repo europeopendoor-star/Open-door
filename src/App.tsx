@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -21,7 +22,6 @@ import Relocation from './pages/Relocation';
 import AboutUs from './pages/AboutUs';
 import FoundersCircle from './components/v2/FoundersCircle';
 import { blogPosts } from './data/blogPosts';
-import { useSEO } from './hooks/useSEO';
 import {
   Search,
   Briefcase,
@@ -662,13 +662,14 @@ const FAQ = () => (
 );
 
 const Home = () => {
-  useSEO({
-    title: "OpenDoor - Unlock Your Career in Europe",
-    description: "Connect with top European employers, explore visa sponsorship opportunities, and seamlessly relocate with OpenDoor."
-  });
+
   
   return (
     <>
+      <Helmet>
+        <title>OpenDoor - Relocate & Work in Europe</title>
+        <meta name="description" content="OpenDoor connects top international talent with leading European employers. Find jobs with visa sponsorship." />
+      </Helmet>
       <Hero />
       <Partners />
       <Values />
@@ -764,10 +765,7 @@ const getJobIcon = (title: string) => {
 };
 
 const FindJobs = () => {
-  useSEO({
-    title: "Find Tech Jobs in Europe | OpenDoor",
-    description: "Search curated job opportunities across Europe with visa sponsorship. Find your next role in engineering, design, or product."
-  });
+
   const [searchTerm, setSearchTerm] = useState("");
   const [locationTerm, setLocationTerm] = useState("");
   const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
@@ -832,7 +830,12 @@ const FindJobs = () => {
   }), [searchTerm, locationTerm, selectedRoles, selectedLocations, visaSupport, relocation]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <Helmet>
+        <title>Find Tech Jobs in Europe with Visa Sponsorship | OpenDoor</title>
+        <meta name="description" content="Search for software engineering, IT, and tech jobs in Europe offering visa sponsorship and relocation assistance." />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
       <PageHeader
         title="Find Your Next Role"
         subtitle="Explore opportunities across Europe with visa sponsorship"
@@ -965,17 +968,20 @@ const FindJobs = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
 const Employers = () => {
-  useSEO({
-    title: "Hire Global Talent | OpenDoor Employers",
-    description: "Access a curated pool of pre-vetted international professionals. We handle visa support and guaranteed matching."
-  });
+
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>Hire International Talent - OpenDoor Employers</title>
+        <meta name="description" content="Partner with OpenDoor to hire skilled international professionals. We handle sourcing, vetting, and relocation." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
     <PageHeader
       title="Hire Global Talent"
       subtitle="Access a curated pool of pre-vetted international professionals"
@@ -1015,6 +1021,7 @@ const Employers = () => {
       </div>
     </section>
   </div>
+    </>
   );
 };
 

@@ -1,17 +1,19 @@
+import { Helmet } from 'react-helmet-async';
 import PageHeader from './components/PageHeader';
 import { Link } from 'react-router-dom';
 import { Globe, Briefcase, Users, CheckCircle2, Building, ShieldCheck, Zap, LineChart, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from './components/ui/Badge';
-import { useSEO } from './hooks/useSEO';
 const TalentSolutions = () => {
-  useSEO({
-    title: "Enterprise Talent Solutions | Global Hiring & EOR",
-    description: "Scale your engineering team globally with OpenDoor's Employer of Record (EOR), automated payroll, and remote hub services."
-  });
+
 
   return (
-  <div className="min-h-screen bg-white">
+  <>
+      <Helmet>
+        <title>Talent Solutions - OpenDoor Europe</title>
+        <meta name="description" content="Discover OpenDoor's talent solutions for European employers seeking global professionals." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
     <PageHeader
       title="Talent Solutions"
       subtitle="Strategic hiring for the modern enterprise"
@@ -187,6 +189,7 @@ const TalentSolutions = () => {
       </motion.div>
     </section>
   </div>
+    </>
   );
 };
 

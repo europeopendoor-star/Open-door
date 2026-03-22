@@ -1,15 +1,17 @@
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/PageHeader';
 import WorldMapDemo from '../components/WorldMapDemo';
 import { Timeline } from '../components/ui/timeline';
-import { useSEO } from '../hooks/useSEO';
 const AboutUs = () => {
-  useSEO({
-    title: "About OpenDoor | Our Mission & Leadership",
-    description: "Learn about OpenDoor's mission, leadership, and our journey in breaking down borders to connect international talent with European opportunities."
-  });
+
 
   return (
-  <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>About OpenDoor - Our Mission & Team</title>
+        <meta name="description" content="Learn about OpenDoor's mission to bridge the gap between global talent and European tech companies." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
     <PageHeader
       title="Our Mission"
       subtitle="Breaking down borders to connect talent with opportunity"
@@ -171,7 +173,8 @@ const AboutUs = () => {
         ))}
       </div>
     </section>
-  </div>
+  </div>    </>
+
   );
 };
 
