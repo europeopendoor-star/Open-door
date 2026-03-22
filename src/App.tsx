@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import PageHeader from './components/PageHeader';
-import Testimonials from './components/Testimonials';
+
 import WorldMapDemo from './components/WorldMapDemo';
 import VisaGuide from './VisaGuide';
 import SuccessStories from './SuccessStories';
@@ -677,7 +677,7 @@ const Home = () => {
       <FoundersCircle />
       <JobCards />
       <CityExplorer />
-      <Testimonials />
+
       <Insights />
       <Newsletter />
       <FAQ />
