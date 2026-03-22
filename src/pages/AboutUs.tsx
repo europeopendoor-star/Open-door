@@ -103,7 +103,7 @@ const AboutUs = () => {
                 className="rounded-3xl object-cover h-44 md:h-60 w-full shadow-xl"
               />
               <img
-                src="https://images.unsplash.com/photo-1521791136366-3e911749830b?auto=format&fit=crop&q=80&w=800"
+                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=800"
                 alt="Handshake"
                 className="rounded-3xl object-cover h-44 md:h-60 w-full shadow-xl"
               />
