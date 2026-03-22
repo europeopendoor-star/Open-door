@@ -1,13 +1,10 @@
+import { Helmet } from 'react-helmet-async';
 import React, { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
-import { useSEO } from './hooks/useSEO';
 const Contact = () => {
-  useSEO({
-    title: "Contact OpenDoor | Get in Touch",
-    description: "Have questions about our recruitment, relocation, or visa services? Contact OpenDoor via email, phone, or WhatsApp."
-  });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,7 +30,12 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>Contact Us - OpenDoor Europe</title>
+        <meta name="description" content="Get in touch with the OpenDoor team for support, inquiries, or partnership opportunities." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
       <PageHeader
         title="Contact Us"
         subtitle="We'd love to hear from you"
@@ -169,6 +171,7 @@ const Contact = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

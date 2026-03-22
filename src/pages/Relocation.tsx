@@ -1,18 +1,20 @@
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/PageHeader';
 import { CheckCircle2, Map, FileText, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CombinedFeaturedSection from "../components/ui/combined-featured-section";
 import MoveLogicCalculator from '../components/v2/MoveLogicCalculator';
 import RelocationPulse from '../components/v2/RelocationPulse';
-import { useSEO } from '../hooks/useSEO';
 const Relocation = () => {
-  useSEO({
-    title: "Seamless Relocation | Visa & Logistics Support",
-    description: "We handle the logistics of moving to Europe, from visa processing to finding a home, so you can focus on your new life and career."
-  });
+
 
   return (
-  <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>Relocation Services to Europe | OpenDoor</title>
+        <meta name="description" content="Expert relocation assistance to Europe. From visa processing to finding a home, we make moving seamless." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
     <PageHeader
       title="Seamless Relocation"
       subtitle="We handle the logistics so you can focus on your new life"
@@ -77,7 +79,8 @@ const Relocation = () => {
         </div>
       </div>
     </section>
-  </div>
+  </div>    </>
+
   );
 };
 

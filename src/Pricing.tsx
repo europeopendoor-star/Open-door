@@ -1,14 +1,11 @@
+import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { CheckCircle2, Building, Star, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSEO } from './hooks/useSEO';
 const Pricing = () => {
-  useSEO({
-    title: "Employer Pricing | Transparent Hiring Packages",
-    description: "Review simple, transparent pricing packages for hiring international tech talent. We offer standard hiring, volume discounts, and guaranteed placements."
-  });
+
   const [isAnnual, setIsAnnual] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
@@ -32,7 +29,12 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <>
+      <Helmet>
+        <title>Pricing & Plans - OpenDoor Europe</title>
+        <meta name="description" content="Explore transparent pricing plans for employers hiring international talent through OpenDoor." />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50/50">
       <PageHeader
         title="Simple, Transparent Pricing"
         subtitle="Invest in your team's future with confidence"
@@ -198,6 +200,7 @@ const Pricing = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

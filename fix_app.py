@@ -1,7 +1,13 @@
-with open("src/App.tsx", "r") as f:
-    content = f.read()
+import re
 
-content = content.replace("  }, [searchTerm, locationTerm, selectedRoles, selectedLocations, visaSupport, relocation]);", "  }), [searchTerm, locationTerm, selectedRoles, selectedLocations, visaSupport, relocation]);")
+with open("src/App.tsx", 'r') as file:
+    content = file.read()
 
-with open("src/App.tsx", "w") as f:
-    f.write(content)
+# Remove useSEO imports
+content = re.sub(r"import\s+\{\s*useSEO\s*\}\s+from\s+['\"].*?['\"];?\n?", "", content)
+
+# Remove useSEO hook calls
+content = re.sub(r"useSEO\s*\(\s*\{[^\}]+\}\s*\)\s*;", "", content, flags=re.DOTALL)
+
+with open("src/App.tsx", 'w') as file:
+    file.write(content)

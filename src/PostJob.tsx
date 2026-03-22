@@ -1,13 +1,10 @@
+import { Helmet } from 'react-helmet-async';
 import React, { useState } from 'react';
 import PageHeader from './components/PageHeader';
 import { CheckCircle2, Building2, User, Mail, Briefcase, FileText, ArrowRight, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSEO } from './hooks/useSEO';
 const PostJob = () => {
-  useSEO({
-    title: "Post a Job | Hire Top Tech Talent in Europe",
-    description: "Post a job on OpenDoor and connect with pre-vetted international tech talent ready to relocate to Europe."
-  });
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     companyName: '',
@@ -58,7 +55,12 @@ const PostJob = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <>
+      <Helmet>
+        <title>Post a Job - OpenDoor Europe</title>
+        <meta name="description" content="Post a job on OpenDoor to find top international talent ready to relocate." />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50/50">
       <PageHeader
         title="Post a Job"
         subtitle="Find your next global hire today"
@@ -304,6 +306,7 @@ const PostJob = () => {
         )}
       </section>
     </div>
+    </>
   );
 };
 
