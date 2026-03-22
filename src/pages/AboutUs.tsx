@@ -157,22 +157,7 @@ const AboutUs = () => {
       },
     ]} />
 
-    <section className="py-24 px-6 max-w-4xl mx-auto text-center">
-      <h3 className="font-display text-3xl mb-12">Our Leadership</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {[
-          { name: "Sarah Jenkins", role: "CEO & Founder", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" },
-          { name: "David Chen", role: "Head of Operations", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" },
-          { name: "Amira Hassan", role: "VP of Partnerships", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" }
-        ].map((person, i) => (
-          <div key={i}>
-            <img src={person.img} alt={person.name} className="w-32 h-32 rounded-full object-cover mx-auto mb-4" referrerPolicy="no-referrer" />
-            <h4 className="font-bold text-lg">{person.name}</h4>
-            <p className="text-sm text-gray-500">{person.role}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+
   </div>    </>
 
   );
