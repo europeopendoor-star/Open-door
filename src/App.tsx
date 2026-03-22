@@ -673,10 +673,11 @@ const Home = () => {
       <Hero />
       <Partners />
       <Values />
-      <CombinedFeaturedSection />
+
       <FoundersCircle />
       <JobCards />
       <CityExplorer />
+      <CombinedFeaturedSection />
 
       <Insights />
       <Newsletter />
